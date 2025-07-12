@@ -12,16 +12,19 @@ import { School } from '../../schools/entities/school.entity';
 import { GamificationPoints } from '../../gamification/entities/gamification-points.entity';
 
 export enum UserRole {
+  SUPER_ADMIN = 'super_admin',
   ADMIN = 'admin',
   TEACHER = 'teacher',
   STUDENT = 'student',
   PARENT = 'parent',
+  FAMILY = 'family',
 }
 
 export enum UserStatus {
   ACTIVE = 'active',
   INACTIVE = 'inactive',
   SUSPENDED = 'suspended',
+  PENDING = 'pending',
 }
 
 @Entity('users')
@@ -73,9 +76,26 @@ export class User {
   @Column({ nullable: true })
   lastLogin: Date;
 
+  @Column({ nullable: true })
+  lastLoginAt: Date;
+
+  @Column({ nullable: true })
+  classId: string;
+
+  @Column({ nullable: true })
+  familyId: string;
+
+  @Column({ type: 'json', nullable: true })
+  gamification: {
+    points?: number;
+    level?: number;
+    badges?: string[];
+    achievements?: string[];
+  };
+
   // Relación con School
   @Column({ nullable: true })
-  schoolId: string;
+  schoolId: number;
 
   @ManyToOne(() => School, school => school.users)
   @JoinColumn({ name: 'schoolId' })

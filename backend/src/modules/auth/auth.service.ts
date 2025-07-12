@@ -59,7 +59,7 @@ export class AuthService {
 
     // Actualitzar últim login
     await this.userRepository.update(user.id, {
-      lastLoginAt: new Date(),
+      lastLogin: new Date(),
     });
 
     return {
@@ -167,7 +167,7 @@ export class AuthService {
       if (!user.googleId) {
         await this.userRepository.update(user.id, {
           googleId: id,
-          lastLoginAt: new Date(),
+          lastLogin: new Date(),
         });
       }
     }

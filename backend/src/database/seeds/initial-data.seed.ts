@@ -2,7 +2,7 @@
 import { DataSource } from 'typeorm';
 import { User, UserRole } from '../../modules/users/entities/user.entity';
 import { School } from '../../modules/schools/entities/school.entity';
-import { Resource } from '../../modules/resources/entities/resource.entity';
+import { Resource, ResourceType } from '../../modules/resources/entities/resource.entity';
 import { GamificationPoints } from '../../modules/gamification/entities/gamification-points.entity';
 
 export class InitialDataSeed {
@@ -39,7 +39,7 @@ export class InitialDataSeed {
         lastName: 'González',
         role: UserRole.ADMIN,
         profilePicture: 'https://via.placeholder.com/150/4A90E2/FFFFFF?text=MG',
-        schoolId: savedSchool.id
+        schoolId: parseInt(savedSchool.id)
       },
       {
         email: 'profesor@demo.gei.edu',
@@ -47,7 +47,7 @@ export class InitialDataSeed {
         lastName: 'Martínez',
         role: UserRole.TEACHER,
         profilePicture: 'https://via.placeholder.com/150/7ED321/FFFFFF?text=JM',
-        schoolId: savedSchool.id
+        schoolId: parseInt(savedSchool.id)
       },
       {
         email: 'parent@demo.gei.edu',
@@ -55,7 +55,7 @@ export class InitialDataSeed {
         lastName: 'Pérez',
         role: UserRole.PARENT,
         profilePicture: 'https://via.placeholder.com/150/F5A623/FFFFFF?text=AP',
-        schoolId: savedSchool.id
+        schoolId: parseInt(savedSchool.id)
       },
       {
         email: 'student@demo.gei.edu',
@@ -63,7 +63,7 @@ export class InitialDataSeed {
         lastName: 'López',
         role: UserRole.STUDENT,
         profilePicture: 'https://via.placeholder.com/150/50E3C2/FFFFFF?text=PL',
-        schoolId: savedSchool.id
+        schoolId: parseInt(savedSchool.id)
       }
     ];
 
@@ -75,38 +75,58 @@ export class InitialDataSeed {
       {
         name: 'Aula d\'Informàtica',
         description: 'Aula equipada amb 30 ordinadors',
-        type: 'classroom',
+        type: ResourceType.CLASSROOM,
         capacity: 30,
-        location: 'Planta 1, Ala Est',
-        features: ['ordinadors', 'projector', 'pantalla_interactiva'],
-        schoolId: savedSchool.id
+        building: 'Planta 1',
+        roomNumber: 'Ala Est',
+        features: {
+          computers: 30,
+          projector: true,
+          whiteboard: true,
+          internet: true
+        },
+        schoolId: parseInt(savedSchool.id)
       },
       {
         name: 'Laboratori de Ciències',
         description: 'Laboratori amb equipament científic complet',
-        type: 'laboratory',
+        type: ResourceType.LABORATORY,
         capacity: 25,
-        location: 'Planta 2, Ala Nord',
-        features: ['microscopis', 'material_quimic', 'campana_extractora'],
-        schoolId: savedSchool.id
+        building: 'Planta 2',
+        roomNumber: 'Ala Nord',
+        features: {
+          projector: true,
+          internet: true,
+          airConditioning: true
+        },
+        schoolId: parseInt(savedSchool.id)
       },
       {
         name: 'Gimnàs Principal',
         description: 'Espai poliesportiu principal',
-        type: 'sports',
+        type: ResourceType.SPORTS,
         capacity: 50,
-        location: 'Planta Baixa',
-        features: ['canastes_basquet', 'porteries_futbol', 'material_esportiu'],
-        schoolId: savedSchool.id
+        building: 'Planta Baixa',
+        features: {
+          audioSystem: true,
+          accessibility: true
+        },
+        schoolId: parseInt(savedSchool.id)
       },
       {
         name: 'Biblioteca',
         description: 'Biblioteca amb zona d\'estudi silenciós',
-        type: 'study',
+        type: ResourceType.STUDY,
         capacity: 40,
-        location: 'Planta 1, Centre',
-        features: ['wifi', 'ordinadors', 'zona_silenciosa'],
-        schoolId: savedSchool.id
+        building: 'Planta 1',
+        roomNumber: 'Centre',
+        features: {
+          computers: 10,
+          internet: true,
+          projector: false,
+          whiteboard: false
+        },
+        schoolId: parseInt(savedSchool.id)
       }
     ];
 

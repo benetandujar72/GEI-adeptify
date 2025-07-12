@@ -14,8 +14,8 @@ export class GamificationPoints {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
-  userId: number;
+  @Column()
+  userId: string;
 
   @Column({ type: 'int', default: 0 })
   points: number;
@@ -45,4 +45,4 @@ export class GamificationPoints {
   @ManyToOne(() => User, user => user.id)
   @JoinColumn({ name: 'userId' })
   user: User;
-} 
+}

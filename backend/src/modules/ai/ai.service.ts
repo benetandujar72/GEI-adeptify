@@ -43,7 +43,7 @@ export class AiService {
 
       // Get user's school resources for context
       const resources = await this.resourceRepository.find({
-        where: { schoolId: user.schoolId }
+        where: { schoolId: parseInt(user.schoolId.toString()) }
       });
       
       // Analyze the message intent

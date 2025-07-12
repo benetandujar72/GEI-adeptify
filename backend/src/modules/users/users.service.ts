@@ -276,8 +276,7 @@ export class UsersService {
     return (
       currentUser.isAdmin ||
       currentUser.id === targetUser.id ||
-      (currentUser.role === UserRole.TEACHER && targetUser.role === UserRole.STUDENT) ||
-      (currentUser.role === UserRole.FAMILY && targetUser.familyId === currentUser.familyId)
+      (currentUser.role === UserRole.TEACHER && targetUser.role === UserRole.STUDENT)
     );
   }
 
@@ -335,4 +334,4 @@ export class UsersService {
       currentUser.familyId === familyId
     );
   }
-} 
+}

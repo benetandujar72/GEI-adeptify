@@ -46,10 +46,17 @@ export class Resource {
   @Column({ type: 'text', nullable: true })
   description?: string;
 
-  @Column({ type: 'enum', enum: ResourceType })
+  @Column({
+    type: 'enum',
+    enum: ResourceType,
+  })
   type: ResourceType;
 
-  @Column({ type: 'enum', enum: ResourceStatus, default: ResourceStatus.AVAILABLE })
+  @Column({
+    type: 'enum',
+    enum: ResourceStatus,
+    default: ResourceStatus.AVAILABLE,
+  })
   status: ResourceStatus;
 
   @Column({ type: 'int', nullable: true })
@@ -161,4 +168,4 @@ export class Resource {
     const parts = [this.building, this.floor, this.roomNumber].filter(Boolean);
     return parts.join(' - ');
   }
-} 
+}
