@@ -1,50 +1,36 @@
 {
   "name": "gei-adeptify",
   "version": "1.0.0",
-  "description": "Sistema de gestió integral per a centres educatius",
+  "description": "Gestor Escolar Intel·ligent - Ecosistema educatiu revolucionari",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npm run start:dev",
     "dev:frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm run start",
+    "start:frontend": "cd frontend && npm run start",
     "build": "npm run build:backend && npm run build:frontend",
     "build:backend": "cd backend && npm run build",
     "build:frontend": "cd frontend && npm run build",
-    "start": "docker-compose up -d",
-    "stop": "docker-compose down",
     "test": "npm run test:backend && npm run test:frontend",
     "test:backend": "cd backend && npm run test",
     "test:frontend": "cd frontend && npm run test",
-    "test:backend:watch": "cd backend && npm run test:watch",
-    "test:frontend:watch": "cd frontend && npm run test:watch",
-    "test:backend:e2e": "cd backend && npm run test:e2e",
-    "test:coverage": "npm run test:coverage:backend && npm run test:coverage:frontend",
-    "test:coverage:backend": "cd backend && npm run test:cov",
-    "test:coverage:frontend": "cd frontend && npm run test:coverage",
     "lint": "npm run lint:backend && npm run lint:frontend",
     "lint:backend": "cd backend && npm run lint",
     "lint:frontend": "cd frontend && npm run lint",
-    "lint:fix": "npm run lint:fix:backend && npm run lint:fix:frontend",
-    "lint:fix:backend": "cd backend && npm run lint:fix",
-    "lint:fix:frontend": "cd frontend && npm run lint:fix",
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "clean": "npm run clean:backend && npm run clean:frontend",
-    "clean:backend": "cd backend && npm run clean",
-    "clean:frontend": "cd frontend && npm run clean"
+    "format": "npm run format:backend && npm run format:frontend",
+    "format:backend": "cd backend && npm run format",
+    "format:frontend": "cd frontend && npm run format"
   },
-  "keywords": [
-    "education",
-    "school-management",
-    "ai",
-    "gamification",
-    "reservations",
-    "nestjs",
-    "nextjs",
-    "typescript"
+  "workspaces": [
+    "backend",
+    "frontend"
   ],
-  "author": "GEI Adeptify Team",
-  "license": "MIT",
   "devDependencies": {
-    "@babel/preset-typescript": "^7.27.1",
     "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
