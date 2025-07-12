@@ -24,6 +24,8 @@ export enum ResourceType {
   PLAYGROUND = 'playground',
   EQUIPMENT = 'equipment',
   VEHICLE = 'vehicle',
+  SPORTS = 'sports',
+  STUDY = 'study',
 }
 
 export enum ResourceStatus {

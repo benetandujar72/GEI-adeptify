@@ -51,7 +51,7 @@ export class AuthService {
       sub: user.id,
       email: user.email,
       role: user.role,
-      schoolId: user.schoolId?.toString() || '1',
+      schoolId: user.schoolId || '1',
     };
 
     const accessToken = this.jwtService.sign(payload);
@@ -115,7 +115,7 @@ export class AuthService {
       sub: savedUser.id,
       email: savedUser.email,
       role: savedUser.role,
-      schoolId: savedUser.schoolId?.toString() || '1',
+      schoolId: savedUser.schoolId || '1',
     };
 
     const accessToken = this.jwtService.sign(payload);
@@ -176,7 +176,7 @@ export class AuthService {
       sub: user.id,
       email: user.email,
       role: user.role,
-      schoolId: user.schoolId?.toString() || '1',
+      schoolId: user.schoolId || '1',
     };
 
     const accessToken = this.jwtService.sign(payload);
@@ -211,7 +211,7 @@ export class AuthService {
         sub: user.id,
         email: user.email,
         role: user.role,
-        schoolId: user.schoolId?.toString() || '1',
+        schoolId: user.schoolId || '1',
       };
 
       const newAccessToken = this.jwtService.sign(newPayload);

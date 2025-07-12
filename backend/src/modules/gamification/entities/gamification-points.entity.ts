@@ -14,8 +14,8 @@ export class GamificationPoints {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
-  userId: number;
+  @Column({ type: 'varchar' })
+  userId: string;
 
   @Column({ type: 'int', default: 0 })
   points: number;

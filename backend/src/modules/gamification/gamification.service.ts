@@ -13,7 +13,7 @@ export class GamificationService {
     private userRepository: Repository<User>,
   ) {}
 
-  async getUserPoints(userId: number): Promise<GamificationPoints> {
+  async getUserPoints(userId: string): Promise<GamificationPoints> {
     let points = await this.gamificationPointsRepository.findOne({
       where: { userId }
     });
@@ -33,7 +33,7 @@ export class GamificationService {
     return points;
   }
 
-  async addPoints(userId: number, pointsToAdd: number, reason: string): Promise<GamificationPoints> {
+  async addPoints(userId: string, pointsToAdd: number, reason: string): Promise<GamificationPoints> {
     const points = await this.getUserPoints(userId);
     
     points.points += pointsToAdd;
@@ -53,7 +53,7 @@ export class GamificationService {
     return await this.gamificationPointsRepository.save(points);
   }
 
-  async addBadge(userId: number, badgeName: string): Promise<GamificationPoints> {
+  async addBadge(userId: string, badgeName: string): Promise<GamificationPoints> {
     const points = await this.getUserPoints(userId);
     
     if (!points.badges.includes(badgeName)) {
@@ -64,7 +64,7 @@ export class GamificationService {
     return points;
   }
 
-  async addAchievement(userId: number, achievementName: string): Promise<GamificationPoints> {
+  async addAchievement(userId: string, achievementName: string): Promise<GamificationPoints> {
     const points = await this.getUserPoints(userId);
     
     if (!points.achievements.includes(achievementName)) {
@@ -75,7 +75,7 @@ export class GamificationService {
     return points;
   }
 
-  async getLeaderboard(schoolId: number, limit: number = 10): Promise<GamificationPoints[]> {
+  async getLeaderboard(schoolId: string, limit: number = 10): Promise<GamificationPoints[]> {
     return await this.gamificationPointsRepository
       .createQueryBuilder('gp')
       .leftJoin('gp.user', 'user')
