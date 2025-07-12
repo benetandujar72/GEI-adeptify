@@ -73,6 +73,9 @@ export class User {
   @Column({ default: false })
   isEmailVerified: boolean;
 
+  @Column({ default: false })
+  isGoogleAuth: boolean;
+
   @Column({ nullable: true })
   lastLogin: Date;
 
@@ -91,6 +94,16 @@ export class User {
     level?: number;
     badges?: string[];
     achievements?: string[];
+    xp?: number;
+    weeklyPoints?: number;
+    monthlyPoints?: number;
+    streak?: number;
+    lastActivity?: Date;
+    totalReservations?: number;
+    totalStudyHours?: number;
+    favoriteSpaces?: string[];
+    completedChallenges?: string[];
+    notifications?: boolean;
   };
 
   // Relación con School

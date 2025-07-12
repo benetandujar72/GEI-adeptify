@@ -101,13 +101,25 @@ export class AuthService {
       role: role || UserRole.STUDENT,
       schoolId: schoolId ? schoolId.toString() : '1',
       status: UserStatus.PENDING, // Requereix activació per admin
-      gamification: {
-        points: 0,
-        level: 1,
-        badges: [],
-        achievements: [],
-      },
     });
+
+    // Set gamification separately to avoid type issues
+    user.gamification = {
+      points: 0,
+      level: 1,
+      badges: [],
+      achievements: [],
+      xp: 0,
+      weeklyPoints: 0,
+      monthlyPoints: 0,
+      streak: 0,
+      lastActivity: new Date(),
+      totalReservations: 0,
+      totalStudyHours: 0,
+      favoriteSpaces: [],
+      completedChallenges: [],
+      notifications: true
+    };
 
     const savedUser = await this.userRepository.save(user);
 
