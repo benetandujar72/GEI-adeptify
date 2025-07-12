@@ -35,7 +35,7 @@ class InitialDataSeed {
                 lastName: 'González',
                 role: user_entity_1.UserRole.ADMIN,
                 profilePicture: 'https://via.placeholder.com/150/4A90E2/FFFFFF?text=MG',
-                schoolId: savedSchool.id
+                schoolId: parseInt(savedSchool.id)
             },
             {
                 email: 'profesor@demo.gei.edu',
@@ -43,7 +43,7 @@ class InitialDataSeed {
                 lastName: 'Martínez',
                 role: user_entity_1.UserRole.TEACHER,
                 profilePicture: 'https://via.placeholder.com/150/7ED321/FFFFFF?text=JM',
-                schoolId: savedSchool.id
+                schoolId: parseInt(savedSchool.id)
             },
             {
                 email: 'parent@demo.gei.edu',
@@ -51,7 +51,7 @@ class InitialDataSeed {
                 lastName: 'Pérez',
                 role: user_entity_1.UserRole.PARENT,
                 profilePicture: 'https://via.placeholder.com/150/F5A623/FFFFFF?text=AP',
-                schoolId: savedSchool.id
+                schoolId: parseInt(savedSchool.id)
             },
             {
                 email: 'student@demo.gei.edu',
@@ -59,7 +59,7 @@ class InitialDataSeed {
                 lastName: 'López',
                 role: user_entity_1.UserRole.STUDENT,
                 profilePicture: 'https://via.placeholder.com/150/50E3C2/FFFFFF?text=PL',
-                schoolId: savedSchool.id
+                schoolId: parseInt(savedSchool.id)
             }
         ];
         const savedUsers = await userRepository.save(users);
@@ -68,38 +68,58 @@ class InitialDataSeed {
             {
                 name: 'Aula d\'Informàtica',
                 description: 'Aula equipada amb 30 ordinadors',
-                type: 'classroom',
+                type: resource_entity_1.ResourceType.CLASSROOM,
                 capacity: 30,
-                location: 'Planta 1, Ala Est',
-                features: ['ordinadors', 'projector', 'pantalla_interactiva'],
-                schoolId: savedSchool.id
+                building: 'Planta 1',
+                roomNumber: 'Ala Est',
+                features: {
+                    computers: 30,
+                    projector: true,
+                    whiteboard: true,
+                    internet: true
+                },
+                schoolId: parseInt(savedSchool.id)
             },
             {
                 name: 'Laboratori de Ciències',
                 description: 'Laboratori amb equipament científic complet',
-                type: 'laboratory',
+                type: resource_entity_1.ResourceType.LABORATORY,
                 capacity: 25,
-                location: 'Planta 2, Ala Nord',
-                features: ['microscopis', 'material_quimic', 'campana_extractora'],
-                schoolId: savedSchool.id
+                building: 'Planta 2',
+                roomNumber: 'Ala Nord',
+                features: {
+                    projector: true,
+                    internet: true,
+                    airConditioning: true
+                },
+                schoolId: parseInt(savedSchool.id)
             },
             {
                 name: 'Gimnàs Principal',
                 description: 'Espai poliesportiu principal',
-                type: 'sports',
+                type: resource_entity_1.ResourceType.SPORTS,
                 capacity: 50,
-                location: 'Planta Baixa',
-                features: ['canastes_basquet', 'porteries_futbol', 'material_esportiu'],
-                schoolId: savedSchool.id
+                building: 'Planta Baixa',
+                features: {
+                    audioSystem: true,
+                    accessibility: true
+                },
+                schoolId: parseInt(savedSchool.id)
             },
             {
                 name: 'Biblioteca',
                 description: 'Biblioteca amb zona d\'estudi silenciós',
-                type: 'study',
+                type: resource_entity_1.ResourceType.STUDY,
                 capacity: 40,
-                location: 'Planta 1, Centre',
-                features: ['wifi', 'ordinadors', 'zona_silenciosa'],
-                schoolId: savedSchool.id
+                building: 'Planta 1',
+                roomNumber: 'Centre',
+                features: {
+                    computers: 10,
+                    internet: true,
+                    projector: false,
+                    whiteboard: false
+                },
+                schoolId: parseInt(savedSchool.id)
             }
         ];
         for (const resourceData of resourcesData) {

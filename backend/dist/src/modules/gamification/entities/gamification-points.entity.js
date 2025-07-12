@@ -20,8 +20,8 @@ __decorate([
     __metadata("design:type", Number)
 ], GamificationPoints.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int' }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], GamificationPoints.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int', default: 0 }),

@@ -53,7 +53,7 @@ let AuthService = class AuthService {
         const accessToken = this.jwtService.sign(payload);
         const refreshToken = this.jwtService.sign(payload, { expiresIn: '30d' });
         await this.userRepository.update(user.id, {
-            lastLoginAt: new Date(),
+            lastLogin: new Date(),
         });
         return {
             accessToken,
@@ -143,7 +143,7 @@ let AuthService = class AuthService {
             if (!user.googleId) {
                 await this.userRepository.update(user.id, {
                     googleId: id,
-                    lastLoginAt: new Date(),
+                    lastLogin: new Date(),
                 });
             }
         }

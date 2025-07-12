@@ -61,11 +61,18 @@ __decorate([
     __metadata("design:type", String)
 ], Resource.prototype, "description", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum', enum: ResourceType }),
+    (0, typeorm_1.Column)({
+        type: 'enum',
+        enum: ResourceType,
+    }),
     __metadata("design:type", String)
 ], Resource.prototype, "type", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'enum', enum: ResourceStatus, default: ResourceStatus.AVAILABLE }),
+    (0, typeorm_1.Column)({
+        type: 'enum',
+        enum: ResourceStatus,
+        default: ResourceStatus.AVAILABLE,
+    }),
     __metadata("design:type", String)
 ], Resource.prototype, "status", void 0);
 __decorate([

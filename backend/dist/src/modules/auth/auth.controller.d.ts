@@ -19,13 +19,13 @@ export declare class AuthController {
     register(registerDto: RegisterDto): Promise<{
         accessToken: string;
         user: {
-            id: any;
-            email: any;
-            firstName: any;
-            lastName: any;
-            role: any;
-            status: any;
-            fullName: any;
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+            role: import("../users/entities/user.entity").UserRole;
+            status: import("../users/entities/user.entity").UserStatus;
+            fullName: string;
         };
         message: string;
     }>;
@@ -69,7 +69,7 @@ export declare class AuthController {
         id: string;
         email: string;
         role: import("../users/entities/user.entity").UserRole;
-        schoolId: number;
+        schoolId: string;
     }>;
     logout(): Promise<{
         message: string;

@@ -193,8 +193,7 @@ let UsersService = class UsersService {
     canViewUser(currentUser, targetUser) {
         return (currentUser.isAdmin ||
             currentUser.id === targetUser.id ||
-            (currentUser.role === user_entity_1.UserRole.TEACHER && targetUser.role === user_entity_1.UserRole.STUDENT) ||
-            (currentUser.role === user_entity_1.UserRole.FAMILY && targetUser.familyId === currentUser.familyId));
+            (currentUser.role === user_entity_1.UserRole.TEACHER && targetUser.role === user_entity_1.UserRole.STUDENT));
     }
     canCreateUser(currentUser, newUserRole) {
         if (currentUser.role === user_entity_1.UserRole.SUPER_ADMIN)

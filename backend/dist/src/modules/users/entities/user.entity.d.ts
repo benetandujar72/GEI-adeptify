@@ -1,15 +1,18 @@
 import { School } from '../../schools/entities/school.entity';
 import { GamificationPoints } from '../../gamification/entities/gamification-points.entity';
 export declare enum UserRole {
+    SUPER_ADMIN = "super_admin",
     ADMIN = "admin",
     TEACHER = "teacher",
     STUDENT = "student",
-    PARENT = "parent"
+    PARENT = "parent",
+    FAMILY = "family"
 }
 export declare enum UserStatus {
     ACTIVE = "active",
     INACTIVE = "inactive",
-    SUSPENDED = "suspended"
+    SUSPENDED = "suspended",
+    PENDING = "pending"
 }
 export declare class User {
     id: string;
@@ -25,7 +28,16 @@ export declare class User {
     googleId: string;
     isEmailVerified: boolean;
     lastLogin: Date;
-    schoolId: string;
+    lastLoginAt: Date;
+    classId: string;
+    familyId: string;
+    gamification: {
+        points?: number;
+        level?: number;
+        badges?: string[];
+        achievements?: string[];
+    };
+    schoolId: number;
     school: School;
     gamificationPoints: GamificationPoints[];
     createdAt: Date;

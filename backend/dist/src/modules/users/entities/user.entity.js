@@ -15,16 +15,19 @@ const school_entity_1 = require("../../schools/entities/school.entity");
 const gamification_points_entity_1 = require("../../gamification/entities/gamification-points.entity");
 var UserRole;
 (function (UserRole) {
+    UserRole["SUPER_ADMIN"] = "super_admin";
     UserRole["ADMIN"] = "admin";
     UserRole["TEACHER"] = "teacher";
     UserRole["STUDENT"] = "student";
     UserRole["PARENT"] = "parent";
+    UserRole["FAMILY"] = "family";
 })(UserRole || (exports.UserRole = UserRole = {}));
 var UserStatus;
 (function (UserStatus) {
     UserStatus["ACTIVE"] = "active";
     UserStatus["INACTIVE"] = "inactive";
     UserStatus["SUSPENDED"] = "suspended";
+    UserStatus["PENDING"] = "pending";
 })(UserStatus || (exports.UserStatus = UserStatus = {}));
 let User = class User {
     get fullName() {
@@ -106,7 +109,23 @@ __decorate([
 ], User.prototype, "lastLogin", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Date)
+], User.prototype, "lastLoginAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
+], User.prototype, "classId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "familyId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'json', nullable: true }),
+    __metadata("design:type", Object)
+], User.prototype, "gamification", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Number)
 ], User.prototype, "schoolId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => school_entity_1.School, school => school.users),

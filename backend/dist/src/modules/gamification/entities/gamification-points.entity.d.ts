@@ -1,7 +1,7 @@
 import { User } from '../../users/entities/user.entity';
 export declare class GamificationPoints {
     id: number;
-    userId: number;
+    userId: string;
     points: number;
     level: number;
     xp: number;

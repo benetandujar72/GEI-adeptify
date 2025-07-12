@@ -1,6 +1,6 @@
 import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
-import { User, UserRole } from '../users/entities/user.entity';
+import { User, UserRole, UserStatus } from '../users/entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
@@ -24,13 +24,13 @@ export declare class AuthService {
     register(registerDto: RegisterDto): Promise<{
         accessToken: string;
         user: {
-            id: any;
-            email: any;
-            firstName: any;
-            lastName: any;
-            role: any;
-            status: any;
-            fullName: any;
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+            role: UserRole;
+            status: UserStatus;
+            fullName: string;
         };
         message: string;
     }>;
