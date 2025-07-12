@@ -11,7 +11,9 @@ export declare enum ResourceType {
     CAFETERIA = "cafeteria",
     PLAYGROUND = "playground",
     EQUIPMENT = "equipment",
-    VEHICLE = "vehicle"
+    VEHICLE = "vehicle",
+    SPORTS = "sports",
+    STUDY = "study"
 }
 export declare enum ResourceStatus {
     AVAILABLE = "available",

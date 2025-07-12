@@ -26,6 +26,8 @@ var ResourceType;
     ResourceType["PLAYGROUND"] = "playground";
     ResourceType["EQUIPMENT"] = "equipment";
     ResourceType["VEHICLE"] = "vehicle";
+    ResourceType["SPORTS"] = "sports";
+    ResourceType["STUDY"] = "study";
 })(ResourceType || (exports.ResourceType = ResourceType = {}));
 var ResourceStatus;
 (function (ResourceStatus) {

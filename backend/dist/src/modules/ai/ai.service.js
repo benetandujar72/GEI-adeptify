@@ -44,7 +44,7 @@ let AiService = AiService_1 = class AiService {
                 return "Ho sento, no he pogut trobar el teu perfil d'usuari.";
             }
             const resources = await this.resourceRepository.find({
-                where: { schoolId: parseInt(user.schoolId.toString()) }
+                where: { schoolId: user.schoolId }
             });
             const intent = await this.analyzeIntent(message, user, resources);
             switch (intent.type) {

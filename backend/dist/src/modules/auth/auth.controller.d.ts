@@ -69,7 +69,7 @@ export declare class AuthController {
         id: string;
         email: string;
         role: import("../users/entities/user.entity").UserRole;
-        schoolId: number;
+        schoolId: string;
     }>;
     logout(): Promise<{
         message: string;

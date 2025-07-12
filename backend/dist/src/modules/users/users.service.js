@@ -26,7 +26,7 @@ let UsersService = class UsersService {
             throw new common_1.ForbiddenException('No tens permisos per veure usuaris');
         }
         return this.userRepository.find({
-            where: { schoolId: parseInt(schoolId) },
+            where: { schoolId },
             select: [
                 'id',
                 'firstName',
@@ -69,7 +69,7 @@ let UsersService = class UsersService {
         }
         const user = this.userRepository.create({
             ...createUserDto,
-            schoolId: createUserDto.schoolId || 1,
+            schoolId: createUserDto.schoolId || '1',
             status: user_entity_1.UserStatus.PENDING,
             gamification: {
                 points: 0,
@@ -89,8 +89,8 @@ let UsersService = class UsersService {
             throw new common_1.ForbiddenException('No tens permisos per canviar el rol d\'aquest usuari');
         }
         const updateData = { ...updateUserDto };
-        if (updateData.schoolId && typeof updateData.schoolId === 'string') {
-            updateData.schoolId = parseInt(updateData.schoolId);
+        if (updateData.schoolId && typeof updateData.schoolId === 'number') {
+            updateData.schoolId = updateData.schoolId.toString();
         }
         await this.userRepository.update(id, updateData);
         return this.findOne(id, currentUser);
@@ -168,7 +168,7 @@ let UsersService = class UsersService {
     }
     async findByRole(role, schoolId) {
         return this.userRepository.find({
-            where: { role, schoolId: parseInt(schoolId), status: user_entity_1.UserStatus.ACTIVE },
+            where: { role, schoolId, status: user_entity_1.UserStatus.ACTIVE },
         });
     }
     async findByClass(classId, currentUser) {

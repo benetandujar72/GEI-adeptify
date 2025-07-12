@@ -1,0 +1,162 @@
+96:38 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'email' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'number' is not assignable to type 'string'.
+
+96     const user = this.userRepository.create({
+                                        ~~~~~~
+
+  src/modules/users/entities/user.entity.ts:98:3
+    98   schoolId: string;
+         ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'DeepPartial<User>'
+
+src/modules/auth/auth.service.ts:115:22 - error TS2339: Property 'id' does not exist on type 'User[]'.
+
+115       sub: savedUser.id,
+                         ~~
+
+src/modules/auth/auth.service.ts:116:24 - error TS2339: Property 'email' does not exist on type 'User[]'.
+
+116       email: savedUser.email,
+                           ~~~~~
+
+src/modules/auth/auth.service.ts:117:23 - error TS2339: Property 'role' does not exist on type 'User[]'.
+
+117       role: savedUser.role,
+                          ~~~~
+
+src/modules/auth/auth.service.ts:118:27 - error TS2339: Property 'schoolId' does not exist on type 'User[]'.
+
+118       schoolId: savedUser.schoolId || '1',
+                              ~~~~~~~~
+
+src/modules/auth/auth.service.ts:126:23 - error TS2339: Property 'id' does not exist on type 'User[]'.
+
+126         id: savedUser.id,
+                          ~~
+
+src/modules/auth/auth.service.ts:127:26 - error TS2339: Property 'email' does not exist on type 'User[]'.
+
+127         email: savedUser.email,
+                             ~~~~~
+
+src/modules/auth/auth.service.ts:128:30 - error TS2339: Property 'firstName' does not exist on type 'User[]'.
+
+128         firstName: savedUser.firstName,
+                                 ~~~~~~~~~
+
+src/modules/auth/auth.service.ts:129:29 - error TS2339: Property 'lastName' does not exist on type 'User[]'.
+
+129         lastName: savedUser.lastName,
+                                ~~~~~~~~
+
+src/modules/auth/auth.service.ts:130:25 - error TS2339: Property 'role' does not exist on type 'User[]'.
+
+130         role: savedUser.role,
+                            ~~~~
+
+src/modules/auth/auth.service.ts:131:27 - error TS2339: Property 'status' does not exist on type 'User[]'.
+
+131         status: savedUser.status,
+                              ~~~~~~
+
+src/modules/auth/auth.service.ts:132:29 - error TS2339: Property 'fullName' does not exist on type 'User[]'.
+
+132         fullName: savedUser.fullName,
+                                ~~~~~~~~
+
+src/modules/auth/auth.service.ts:148:34 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'email' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'number' is not assignable to type 'string'.
+
+148       user = this.userRepository.create({
+                                     ~~~~~~
+
+  src/modules/users/entities/user.entity.ts:98:3
+    98   schoolId: string;
+         ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'DeepPartial<User>'
+
+src/modules/gamification/gamification.service.spec.ts:67:50 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+67       const result = await service.getUserPoints(1);
+                                                    ~
+
+src/modules/gamification/gamification.service.spec.ts:95:50 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+95       const result = await service.getUserPoints(1);
+                                                    ~
+
+src/modules/gamification/gamification.service.spec.ts:124:46 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+124       const result = await service.addPoints(1, 100, 'test_reason');
+                                                 ~
+
+src/modules/gamification/gamification.service.spec.ts:150:46 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+150       const result = await service.addPoints(1, 100, 'test_reason');
+                                                 ~
+
+src/modules/gamification/gamification.service.spec.ts:168:45 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+168       const result = await service.addBadge(1, 'new_badge');
+                                                ~
+
+src/modules/gamification/gamification.service.spec.ts:175:45 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+175       const result = await service.addBadge(1, 'first_reservation');
+                                                ~
+
+src/modules/gamification/gamification.service.spec.ts:194:51 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+194       const result = await service.addAchievement(1, 'new_achievement');
+                                                      ~
+
+src/modules/gamification/gamification.service.spec.ts:201:51 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+201       const result = await service.addAchievement(1, 'early_bird');
+                                                      ~
+
+src/modules/gamification/gamification.service.spec.ts:218:51 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+218       const result = await service.getLeaderboard(1, 10);
+                                                      ~
+
+src/modules/users/users.service.ts:81:7 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'schoolId' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'string | number' is not assignable to type 'string'.
+      Type 'number' is not assignable to type 'string'.
+
+81       schoolId: createUserDto.schoolId || '1',
+         ~~~~~~~~
+
+  src/modules/users/entities/user.entity.ts:98:3
+    98   schoolId: string;
+         ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'DeepPartial<User>'
+
+src/modules/users/users.service.ts:91:5 - error TS2740: Type 'User[]' is missing the following properties from type 'User': id, email, firstName, lastName, and 23 more.
+
+91     return this.userRepository.save(user);
+       ~~~~~~
+
+src/modules/users/users.service.ts:114:7 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+114       updateData.schoolId = updateData.schoolId.toString();
+          ~~~~~~~~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:117:42 - error TS2345: Argument of type '{ email?: string; firstName?: string; lastName?: string; role?: UserRole; schoolId?: number; phone?: string; bio?: string; classId?: string; familyId?: string; academicInfo?: { grade?: string; subjects?: string[]; academicYear?: string; teacherId?: string; }; }' is not assignable to parameter of type '_QueryDeepPartialEntity<User>'.
+  Types of property 'schoolId' are incompatible.
+    Type 'number' is not assignable to type 'string | (() => string)'.
+
+117     await this.userRepository.update(id, updateData);
+                                             ~~~~~~~~~~
+
+[4:38:46 AM] Found 26 errors. Watching for file changes.
+
