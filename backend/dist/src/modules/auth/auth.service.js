@@ -148,6 +148,7 @@ let AuthService = class AuthService {
                 level: 1,
                 badges: [],
                 achievements: [],
+                xp: 0,
                 weeklyPoints: 0,
                 monthlyPoints: 0,
                 streak: 0,
@@ -158,10 +159,6 @@ let AuthService = class AuthService {
                 completedChallenges: [],
                 notifications: true
             };
-            /user.gamification>;
-            if (user.gamification) {
-                user.gamification.xp = 0;
-            }
             user = await this.userRepository.save(user);
         }
         else {
