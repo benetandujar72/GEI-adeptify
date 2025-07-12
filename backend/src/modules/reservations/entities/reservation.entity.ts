@@ -176,4 +176,4 @@ export class Reservation {
   get isPendingApproval(): boolean {
     return this.status === ReservationStatus.PENDING;
   }
-} 
+}

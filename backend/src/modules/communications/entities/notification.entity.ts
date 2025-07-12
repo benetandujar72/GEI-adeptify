@@ -28,8 +28,8 @@ export class Notification {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
-  userId: number;
+  @Column({ type: 'varchar' })
+  userId: string;
 
   @Column({ type: 'varchar', length: 255 })
   title: string;

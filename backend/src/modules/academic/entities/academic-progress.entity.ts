@@ -28,8 +28,8 @@ export class AcademicProgress {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
-  studentId: number;
+  @Column({ type: 'varchar' })
+  studentId: string;
 
   @Column({ type: 'varchar', length: 100 })
   subject: string;

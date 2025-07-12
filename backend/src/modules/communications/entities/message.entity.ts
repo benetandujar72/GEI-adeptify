@@ -31,11 +31,11 @@ export class Message {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
-  senderId: number;
+  @Column({ type: 'varchar' })
+  senderId: string;
 
-  @Column({ type: 'int', nullable: true })
-  receiverId: number;
+  @Column({ type: 'varchar' })
+  receiverId: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   subject: string;
@@ -94,4 +94,4 @@ export class Message {
   @ManyToOne(() => Message, message => message.id)
   @JoinColumn({ name: 'parentMessageId' })
   parentMessage: Message;
-} 
+}
