@@ -175,6 +175,7 @@ export class AuthService {
         level: 1,
         badges: [],
         achievements: [],
+        xp: 0,
         weeklyPoints: 0,
         monthlyPoints: 0,
         streak: 0,
@@ -184,12 +185,7 @@ export class AuthService {
         favoriteSpaces: [],
         completedChallenges: [],
         notifications: true
-      };</user.gamification>
-
-      // Now add xp separately
-      if (user.gamification) {
-        user.gamification.xp = 0;
-      }
+      };
 
       user = await this.userRepository.save(user);
     } else {
