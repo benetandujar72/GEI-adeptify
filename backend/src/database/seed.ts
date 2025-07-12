@@ -1,12 +1,12 @@
 
 import { DataSource } from 'typeorm';
-import { databaseConfig } from '../config/database.config';
+import { dataSourceConfig } from '../config/database.config';
 import { ConfigService } from '@nestjs/config';
 import { InitialDataSeed } from './seeds/initial-data.seed';
 
 async function runSeed() {
   const configService = new ConfigService();
-  const dataSource = new DataSource(databaseConfig(configService));
+  const dataSource = new DataSource(dataSourceConfig(configService));
 
   try {
     await dataSource.initialize();

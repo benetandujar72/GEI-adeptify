@@ -1,9 +1,9 @@
 
 import { DataSource } from 'typeorm';
-import { User } from '../modules/users/entities/user.entity';
-import { School } from '../modules/schools/entities/school.entity';
-import { Resource } from '../modules/resources/entities/resource.entity';
-import { GamificationPoints } from '../modules/gamification/entities/gamification-points.entity';
+import { User } from '../../modules/users/entities/user.entity';
+import { School } from '../../modules/schools/entities/school.entity';
+import { Resource } from '../../modules/resources/entities/resource.entity';
+import { GamificationPoints } from '../../modules/gamification/entities/gamification-points.entity';
 
 export class InitialDataSeed {
   public async run(dataSource: DataSource): Promise<void> {
