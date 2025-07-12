@@ -77,7 +77,6 @@ let UsersService = class UsersService {
             level: 1,
             badges: [],
             achievements: [],
-            xp: 0,
             weeklyPoints: 0,
             monthlyPoints: 0,
             streak: 0,
@@ -88,6 +87,9 @@ let UsersService = class UsersService {
             completedChallenges: [],
             notifications: true
         };
+        if (user.gamification) {
+            user.gamification.xp = 0;
+        }
         return await this.userRepository.save(user);
     }
     async update(id, updateUserDto, currentUser) {

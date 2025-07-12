@@ -86,6 +86,7 @@ let AuthService = class AuthService {
             role: role || user_entity_1.UserRole.STUDENT,
             schoolId: schoolId ? schoolId.toString() : '1',
             status: user_entity_1.UserStatus.PENDING,
+            isGoogleAuth: false,
         });
         user.gamification = {
             points: 0,
@@ -147,7 +148,6 @@ let AuthService = class AuthService {
                 level: 1,
                 badges: [],
                 achievements: [],
-                xp: 0,
                 weeklyPoints: 0,
                 monthlyPoints: 0,
                 streak: 0,
@@ -158,6 +158,10 @@ let AuthService = class AuthService {
                 completedChallenges: [],
                 notifications: true
             };
+            /user.gamification>;
+            if (user.gamification) {
+                user.gamification.xp = 0;
+            }
             user = await this.userRepository.save(user);
         }
         else {
