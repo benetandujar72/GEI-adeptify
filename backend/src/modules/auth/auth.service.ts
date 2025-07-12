@@ -146,29 +146,33 @@ export class AuthService {
     if (!user) {
       // Crear nou usuari amb Google
       user = this.userRepository.create({
-        email: profile.emails[0].value,
+        email: email,
         firstName: name.givenName,
         lastName: name.familyName,
+        password: '',
         role: UserRole.STUDENT, // Rol per defecte
         status: UserStatus.ACTIVE,
         schoolId: '1', // ID per defecte
-        gamification: {
-          points: 0,
-          level: 1,
-          badges: [],
-          achievements: [],
-          xp: 0,
-          weeklyPoints: 0,
-          monthlyPoints: 0,
-          streak: 0,
-          lastActivity: new Date(),
-          totalReservations: 0,
-          totalStudyHours: 0,
-          favoriteSpaces: [],
-          completedChallenges: [],
-          notifications: true
-        }
+        isGoogleAuth: true
       });
+
+      // Set gamification separately to avoid type issues
+      user.gamification = {
+        points: 0,
+        level: 1,
+        badges: [],
+        achievements: [],
+        xp: 0,
+        weeklyPoints: 0,
+        monthlyPoints: 0,
+        streak: 0,
+        lastActivity: new Date(),
+        totalReservations: 0,
+        totalStudyHours: 0,
+        favoriteSpaces: [],
+        completedChallenges: [],
+        notifications: true
+      };
 
       user = await this.userRepository.save(user);
     } else {

@@ -79,24 +79,26 @@ export class UsersService {
     const user = this.userRepository.create({
       ...createUserDto,
       schoolId: createUserDto.schoolId ? createUserDto.schoolId.toString() : '1',
-      status: UserStatus.PENDING,
-      gamification: {
-        points: 0,
-        level: 1,
-        badges: [],
-        achievements: [],
-        xp: 0,
-        weeklyPoints: 0,
-        monthlyPoints: 0,
-        streak: 0,
-        lastActivity: new Date(),
-        totalReservations: 0,
-        totalStudyHours: 0,
-        favoriteSpaces: [],
-        completedChallenges: [],
-        notifications: true
-      }
+      status: UserStatus.PENDING
     });
+
+    // Set gamification separately to avoid type issues
+    user.gamification = {
+      points: 0,
+      level: 1,
+      badges: [],
+      achievements: [],
+      xp: 0,
+      weeklyPoints: 0,
+      monthlyPoints: 0,
+      streak: 0,
+      lastActivity: new Date(),
+      totalReservations: 0,
+      totalStudyHours: 0,
+      favoriteSpaces: [],
+      completedChallenges: [],
+      notifications: true
+    };
 
     return await this.userRepository.save(user);
   }

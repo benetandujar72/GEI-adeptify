@@ -17,7 +17,7 @@ export class CommunicationsController {
   }) {
     return await this.communicationsService.sendMessage(
       req.user.id,
-      body.receiverId,
+      body.receiverId.toString(),
       body.content,
       body.subject,
       body.type

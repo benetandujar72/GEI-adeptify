@@ -21,22 +21,25 @@ export class AcademicController {
     date: Date;
     metadata?: any;
   }) {
-    return await this.academicService.createProgress(body);
+    return await this.academicService.createProgress({
+      ...body,
+      studentId: body.studentId.toString()
+    });
   }
 
   @Get('progress/:studentId')
   async getStudentProgress(@Param('studentId') studentId: string, @Body() body: { subject?: string }) {
-    return await this.academicService.getStudentProgress(+studentId, body.subject);
+    return await this.academicService.getStudentProgress(studentId, body.subject);
   }
 
   @Get('progress/:studentId/average')
   async getStudentAverage(@Param('studentId') studentId: string, @Body() body: { subject?: string }) {
-    return await this.academicService.getStudentAverage(+studentId, body.subject);
+    return await this.academicService.getStudentAverage(studentId, body.subject);
   }
 
   @Get('progress/:studentId/subject/:subject')
   async getSubjectProgress(@Param('studentId') studentId: string, @Param('subject') subject: string) {
-    return await this.academicService.getSubjectProgress(+studentId, subject);
+    return await this.academicService.getSubjectProgress(studentId, subject);
   }
 
   @Patch('progress/:id')
