@@ -51,7 +51,7 @@ export class AuthService {
       sub: user.id,
       email: user.email,
       role: user.role,
-      schoolId: user.schoolId,
+      schoolId: user.schoolId?.toString() || '1',
     };
 
     const accessToken = this.jwtService.sign(payload);
@@ -115,7 +115,7 @@ export class AuthService {
       sub: savedUser.id,
       email: savedUser.email,
       role: savedUser.role,
-      schoolId: savedUser.schoolId,
+      schoolId: savedUser.schoolId?.toString() || '1',
     };
 
     const accessToken = this.jwtService.sign(payload);
@@ -176,7 +176,7 @@ export class AuthService {
       sub: user.id,
       email: user.email,
       role: user.role,
-      schoolId: user.schoolId,
+      schoolId: user.schoolId?.toString() || '1',
     };
 
     const accessToken = this.jwtService.sign(payload);
@@ -211,7 +211,7 @@ export class AuthService {
         sub: user.id,
         email: user.email,
         role: user.role,
-        schoolId: user.schoolId,
+        schoolId: user.schoolId?.toString() || '1',
       };
 
       const newAccessToken = this.jwtService.sign(newPayload);
@@ -284,7 +284,7 @@ export class AuthService {
   async resetPassword(token: string, newPassword: string) {
     try {
       const payload = this.jwtService.verify(token);
-      
+
       if (payload.type !== 'password-reset') {
         throw new BadRequestException('Token invàlid');
       }
@@ -301,4 +301,4 @@ export class AuthService {
       throw new BadRequestException('Token invàlid o expirat');
     }
   }
-} 
+}

@@ -59,8 +59,8 @@ export class Resource {
   })
   status: ResourceStatus;
 
-  @Column({ type: 'int', nullable: true })
-  schoolId: number;
+  @Column({ type: 'varchar', nullable: true })
+  schoolId: string;
 
   @ManyToOne(() => School, school => school.resources)
   @JoinColumn({ name: 'schoolId' })

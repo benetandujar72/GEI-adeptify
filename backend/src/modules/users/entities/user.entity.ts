@@ -94,8 +94,8 @@ export class User {
   };
 
   // Relación con School
-  @Column({ nullable: true })
-  schoolId: number;
+  @Column({ type: 'varchar', nullable: true })
+  schoolId: string;
 
   @ManyToOne(() => School, school => school.users)
   @JoinColumn({ name: 'schoolId' })

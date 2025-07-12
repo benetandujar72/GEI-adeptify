@@ -4,7 +4,7 @@ export interface JwtPayload {
   sub: string; // User ID
   email: string;
   role: UserRole;
-  schoolId: string;
+  schoolId: number;
   iat?: number; // Issued at
   exp?: number; // Expiration time
 }
