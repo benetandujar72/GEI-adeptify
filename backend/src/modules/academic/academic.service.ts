@@ -16,7 +16,7 @@ export class AcademicService {
   ) {}
 
   async createProgress(progressData: {
-    studentId: number;
+    studentId: string;
     subject: string;
     evaluationType: EvaluationType;
     title: string;
@@ -37,7 +37,7 @@ export class AcademicService {
     return await this.academicProgressRepository.save(progress);
   }
 
-  async getStudentProgress(studentId: number, subject?: string): Promise<AcademicProgress[]> {
+  async getStudentProgress(studentId: string, subject?: string): Promise<AcademicProgress[]> {
     const where: any = { studentId };
     if (subject) {
       where.subject = subject;
@@ -49,7 +49,7 @@ export class AcademicService {
     });
   }
 
-  async getStudentAverage(studentId: number, subject?: string): Promise<number> {
+  async getStudentAverage(studentId: string, subject?: string): Promise<number> {
     const progress = await this.getStudentProgress(studentId, subject);
     
     if (progress.length === 0) return 0;
@@ -60,7 +60,7 @@ export class AcademicService {
     return totalMaxScore > 0 ? (totalScore / totalMaxScore) * 100 : 0;
   }
 
-  async getSubjectProgress(studentId: number, subject: string): Promise<{
+  async getSubjectProgress(studentId: string, subject: string): Promise<{
     average: number;
     trend: 'improving' | 'declining' | 'stable';
     recentScores: number[];
@@ -132,7 +132,7 @@ export class AcademicService {
     await this.academicProgressRepository.delete(id);
   }
 
-  private async generateInsights(studentId: number, subject: string, score: number, maxScore: number = 100): Promise<any> {
+  private async generateInsights(studentId: string, subject: string, score: number, maxScore: number = 100): Promise<any> {
     const percentage = (score / maxScore) * 100;
     
     let trend: 'improving' | 'declining' | 'stable' = 'stable';

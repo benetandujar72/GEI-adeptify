@@ -18,7 +18,7 @@ export class CommunicationsService {
     private aiService: AiService,
   ) {}
 
-  async sendMessage(senderId: number, receiverId: number, content: string, subject?: string, type: MessageType = MessageType.DIRECT): Promise<Message> {
+  async sendMessage(senderId: string, receiverId: string, content: string, subject?: string, type: MessageType = MessageType.DIRECT): Promise<Message> {
     const message = this.messageRepository.create({
       senderId,
       receiverId,
@@ -42,7 +42,7 @@ export class CommunicationsService {
     return savedMessage;
   }
 
-  async getMessages(userId: number, limit: number = 50): Promise<Message[]> {
+  async getMessages(userId: string, limit: number = 50): Promise<Message[]> {
     return await this.messageRepository.find({
       where: [
         { senderId: userId },
@@ -54,7 +54,7 @@ export class CommunicationsService {
     });
   }
 
-  async getUnreadMessages(userId: number): Promise<Message[]> {
+  async getUnreadMessages(userId: string): Promise<Message[]> {
     return await this.messageRepository.find({
       where: { receiverId: userId, isRead: false },
       order: { createdAt: 'DESC' },
@@ -62,7 +62,7 @@ export class CommunicationsService {
     });
   }
 
-  async markMessageAsRead(messageId: number, userId: number): Promise<Message> {
+  async markMessageAsRead(messageId: number, userId: string): Promise<Message> {
     const message = await this.messageRepository.findOne({
       where: { id: messageId, receiverId: userId }
     });
@@ -94,7 +94,7 @@ export class CommunicationsService {
     return message;
   }
 
-  async createNotification(userId: number, notificationData: {
+  async createNotification(userId: string, notificationData: {
     title: string;
     message: string;
     type: NotificationType;
@@ -109,7 +109,7 @@ export class CommunicationsService {
     return await this.notificationRepository.save(notification);
   }
 
-  async getUserNotifications(userId: number, limit: number = 20): Promise<Notification[]> {
+  async getUserNotifications(userId: string, limit: number = 20): Promise<Notification[]> {
     return await this.notificationRepository.find({
       where: { userId },
       order: { createdAt: 'DESC' },
@@ -117,14 +117,14 @@ export class CommunicationsService {
     });
   }
 
-  async getUnreadNotifications(userId: number): Promise<Notification[]> {
+  async getUnreadNotifications(userId: string): Promise<Notification[]> {
     return await this.notificationRepository.find({
       where: { userId, isRead: false },
       order: { createdAt: 'DESC' }
     });
   }
 
-  async markNotificationAsRead(notificationId: number, userId: number): Promise<Notification> {
+  async markNotificationAsRead(notificationId: number, userId: string): Promise<Notification> {
     const notification = await this.notificationRepository.findOne({
       where: { id: notificationId, userId }
     });
@@ -138,7 +138,7 @@ export class CommunicationsService {
     return notification;
   }
 
-  async markAllNotificationsAsRead(userId: number): Promise<void> {
+  async markAllNotificationsAsRead(userId: string): Promise<void> {
     await this.notificationRepository.update(
       { userId, isRead: false },
       { isRead: true, readAt: new Date() }
