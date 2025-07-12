@@ -21,16 +21,19 @@ let AcademicController = class AcademicController {
         this.academicService = academicService;
     }
     async createProgress(req, body) {
-        return await this.academicService.createProgress(body);
+        return await this.academicService.createProgress({
+            ...body,
+            studentId: body.studentId.toString()
+        });
     }
     async getStudentProgress(studentId, body) {
-        return await this.academicService.getStudentProgress(+studentId, body.subject);
+        return await this.academicService.getStudentProgress(studentId, body.subject);
     }
     async getStudentAverage(studentId, body) {
-        return await this.academicService.getStudentAverage(+studentId, body.subject);
+        return await this.academicService.getStudentAverage(studentId, body.subject);
     }
     async getSubjectProgress(studentId, subject) {
-        return await this.academicService.getSubjectProgress(+studentId, subject);
+        return await this.academicService.getSubjectProgress(studentId, subject);
     }
     async updateProgress(id, updateData) {
         return await this.academicService.updateProgress(+id, updateData);

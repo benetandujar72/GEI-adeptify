@@ -21,7 +21,7 @@ let CommunicationsController = class CommunicationsController {
         this.communicationsService = communicationsService;
     }
     async sendMessage(req, body) {
-        return await this.communicationsService.sendMessage(req.user.id, body.receiverId, body.content, body.subject, body.type);
+        return await this.communicationsService.sendMessage(req.user.id, body.receiverId.toString(), body.content, body.subject, body.type);
     }
     async getMessages(req, body) {
         return await this.communicationsService.getMessages(req.user.id, body.limit);
