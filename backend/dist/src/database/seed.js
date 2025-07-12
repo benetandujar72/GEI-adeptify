@@ -6,7 +6,7 @@ const config_1 = require("@nestjs/config");
 const initial_data_seed_1 = require("./seeds/initial-data.seed");
 async function runSeed() {
     const configService = new config_1.ConfigService();
-    const dataSource = new typeorm_1.DataSource((0, database_config_1.databaseConfig)(configService));
+    const dataSource = new typeorm_1.DataSource((0, database_config_1.dataSourceConfig)(configService));
     try {
         await dataSource.initialize();
         console.log('🔌 Connexió a la base de dades establerta');

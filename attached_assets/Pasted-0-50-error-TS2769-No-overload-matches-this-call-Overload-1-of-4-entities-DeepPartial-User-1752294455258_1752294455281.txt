@@ -1,0 +1,212 @@
+0:50 - error TS2769: No overload matches this call.
+  Overload 1 of 4, '(entities: DeepPartial<User>[], options?: SaveOptions): Promise<(DeepPartial<User> & User)[]>', gave the following error.
+    Argument of type '{ email: string; firstName: string; lastName: string; role: string; profilePicture: string; schoolId: number; }[]' is not assignable to parameter of type 'DeepPartial<User>[]'.
+      Type '{ email: string; firstName: string; lastName: string; role: string; profilePicture: string; schoolId: number; }' is not assignable to type 'DeepPartial<User>'.
+        Type '{ email: string; firstName: string; lastName: string; role: string; profilePicture: string; schoolId: number; }' is not assignable to type '{ id?: string; firstName?: string; lastName?: string; email?: string; phone?: string; role?: DeepPartial<UserRole>; status?: DeepPartial<UserStatus>; ... 21 more ...; readonly isAdmin?: DeepPartial<...>; }'.
+          Types of property 'role' are incompatible.
+            Type 'string' is not assignable to type 'DeepPartial<UserRole>'.
+  Overload 2 of 4, '(entity: DeepPartial<User>, options?: SaveOptions): Promise<DeepPartial<User> & User>', gave the following error.
+    Argument of type '{ email: string; firstName: string; lastName: string; role: string; profilePicture: string; schoolId: number; }[]' is not assignable to parameter of type 'DeepPartial<User>'.
+
+70     const savedUsers = await userRepository.save(users);
+                                                    ~~~~~
+
+
+src/database/seeds/initial-data.seed.ts:112:58 - error TS2769: No overload matches this call.
+  Overload 1 of 4, '(entities: DeepPartial<Resource>[], options?: SaveOptions): Promise<(DeepPartial<Resource> & Resource)[]>', gave the following error.
+    Argument of type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }[]' is not assignable to parameter of type 'DeepPartial<Resource>[]'.
+      Type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }' is not assignable to type 'DeepPartial<Resource>'.
+        Type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }' is not assignable to type '{ id?: string; name?: string; description?: string; type?: DeepPartial<ResourceType>; status?: DeepPartial<ResourceStatus>; schoolId?: number; ... 20 more ...; readonly fullLocation?: string; }'.
+          Types of property 'type' are incompatible.
+            Type 'string' is not assignable to type 'DeepPartial<ResourceType>'.
+  Overload 2 of 4, '(entity: DeepPartial<Resource>, options?: SaveOptions): Promise<DeepPartial<Resource> & Resource>', gave the following error.
+    Argument of type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }[]' is not assignable to parameter of type 'DeepPartial<Resource>'.
+
+112     const savedResources = await resourceRepository.save(resources);
+                                                             ~~~~~~~~~
+
+
+src/database/seeds/initial-data.seed.ts:124:39 - error TS2769: No overload matches this call.
+  Overload 1 of 4, '(entities: DeepPartial<GamificationPoints>[], options?: SaveOptions): Promise<(DeepPartial<GamificationPoints> & GamificationPoints)[]>', gave the following error.
+    Argument of type '{ userId: string; points: number; level: number; xp: number; badges: string[]; achievements: string[]; }[]' is not assignable to parameter of type 'DeepPartial<GamificationPoints>[]'.
+      Type '{ userId: string; points: number; level: number; xp: number; badges: string[]; achievements: string[]; }' is not assignable to type 'DeepPartial<GamificationPoints>'.
+        Type '{ userId: string; points: number; level: number; xp: number; badges: string[]; achievements: string[]; }' is not assignable to type '{ id?: number; userId?: number; points?: number; level?: number; xp?: number; badges?: DeepPartial<string[]>; achievements?: DeepPartial<string[]>; lastActivity?: DeepPartial<Date>; createdAt?: DeepPartial<...>; updatedAt?: DeepPartial<...>; user?: DeepPartial<...>; }'.
+          Types of property 'userId' are incompatible.
+            Type 'string' is not assignable to type 'number'.
+  Overload 2 of 4, '(entity: DeepPartial<GamificationPoints>, options?: SaveOptions): Promise<DeepPartial<GamificationPoints> & GamificationPoints>', gave the following error.
+    Argument of type '{ userId: string; points: number; level: number; xp: number; badges: string[]; achievements: string[]; }[]' is not assignable to parameter of type 'DeepPartial<GamificationPoints>'.
+
+124     await gamificationRepository.save(gamificationData);
+                                          ~~~~~~~~~~~~~~~~
+
+
+src/modules/auth/strategies/google.strategy.ts:16:7 - error TS2401: A 'super' call must be a root-level statement within a constructor of a derived class that contains initialized properties, parameter properties, or private identifiers.
+
+ 16       super({
+          ~~~~~~~
+ 17         clientID,
+    ~~~~~~~~~~~~~~~~~
+... 
+ 20         scope: ['email', 'profile'],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 21       });
+    ~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:2:3 - error TS2300: Duplicate identifier 'Entity'.
+
+2   Entity,
+    ~~~~~~
+
+src/modules/users/entities/user.entity.ts:3:3 - error TS2300: Duplicate identifier 'PrimaryGeneratedColumn'.
+
+3   PrimaryGeneratedColumn,
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:4:3 - error TS2300: Duplicate identifier 'Column'.
+
+4   Column,
+    ~~~~~~
+
+src/modules/users/entities/user.entity.ts:5:3 - error TS2300: Duplicate identifier 'CreateDateColumn'.
+
+5   CreateDateColumn,
+    ~~~~~~~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:6:3 - error TS2300: Duplicate identifier 'UpdateDateColumn'.
+
+6   UpdateDateColumn,
+    ~~~~~~~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:8:3 - error TS2300: Duplicate identifier 'ManyToOne'.
+
+8   ManyToOne,
+    ~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:9:3 - error TS2300: Duplicate identifier 'OneToMany'.
+
+9   OneToMany,
+    ~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:10:3 - error TS2300: Duplicate identifier 'JoinColumn'.
+
+10   JoinColumn,
+     ~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:13:10 - error TS2300: Duplicate identifier 'School'.
+
+13 import { School } from '../../schools/entities/school.entity';
+            ~~~~~~
+
+src/modules/users/entities/user.entity.ts:17:3 - error TS2300: Duplicate identifier 'ADMIN'.
+
+17   ADMIN = 'admin',
+     ~~~~~
+
+src/modules/users/entities/user.entity.ts:18:3 - error TS2300: Duplicate identifier 'TEACHER'.
+
+18   TEACHER = 'teacher',
+     ~~~~~~~
+
+src/modules/users/entities/user.entity.ts:19:3 - error TS2300: Duplicate identifier 'STUDENT'.
+
+19   STUDENT = 'student',
+     ~~~~~~~
+
+src/modules/users/entities/user.entity.ts:25:3 - error TS2300: Duplicate identifier 'ACTIVE'.
+
+25   ACTIVE = 'active',
+     ~~~~~~
+
+src/modules/users/entities/user.entity.ts:26:3 - error TS2300: Duplicate identifier 'INACTIVE'.
+
+26   INACTIVE = 'inactive',
+     ~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:27:3 - error TS2300: Duplicate identifier 'SUSPENDED'.
+
+27   SUSPENDED = 'suspended',
+     ~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:33:14 - error TS2300: Duplicate identifier 'User'.
+
+33 export class User {
+                ~~~~
+
+src/modules/users/entities/user.entity.ts:151:3 - error TS2300: Duplicate identifier 'Entity'.
+
+151   Entity,
+      ~~~~~~
+
+src/modules/users/entities/user.entity.ts:152:3 - error TS2300: Duplicate identifier 'PrimaryGeneratedColumn'.
+
+152   PrimaryGeneratedColumn,
+      ~~~~~~~~~~~~~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:153:3 - error TS2300: Duplicate identifier 'Column'.
+
+153   Column,
+      ~~~~~~
+
+src/modules/users/entities/user.entity.ts:154:3 - error TS2300: Duplicate identifier 'CreateDateColumn'.
+
+154   CreateDateColumn,
+      ~~~~~~~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:155:3 - error TS2300: Duplicate identifier 'UpdateDateColumn'.
+
+155   UpdateDateColumn,
+      ~~~~~~~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:156:3 - error TS2300: Duplicate identifier 'ManyToOne'.
+
+156   ManyToOne,
+      ~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:157:3 - error TS2300: Duplicate identifier 'OneToMany'.
+
+157   OneToMany,
+      ~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:158:3 - error TS2300: Duplicate identifier 'JoinColumn'.
+
+158   JoinColumn,
+      ~~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:160:10 - error TS2300: Duplicate identifier 'School'.
+
+160 import { School } from '../../schools/entities/school.entity';
+             ~~~~~~
+
+src/modules/users/entities/user.entity.ts:164:3 - error TS2300: Duplicate identifier 'ADMIN'.
+
+164   ADMIN = 'admin',
+      ~~~~~
+
+src/modules/users/entities/user.entity.ts:165:3 - error TS2300: Duplicate identifier 'TEACHER'.
+
+165   TEACHER = 'teacher',
+      ~~~~~~~
+
+src/modules/users/entities/user.entity.ts:166:3 - error TS2300: Duplicate identifier 'STUDENT'.
+
+166   STUDENT = 'student',
+      ~~~~~~~
+
+src/modules/users/entities/user.entity.ts:171:3 - error TS2300: Duplicate identifier 'ACTIVE'.
+
+171   ACTIVE = 'active',
+      ~~~~~~
+
+src/modules/users/entities/user.entity.ts:172:3 - error TS2300: Duplicate identifier 'INACTIVE'.
+
+172   INACTIVE = 'inactive',
+      ~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:173:3 - error TS2300: Duplicate identifier 'SUSPENDED'.
+
+173   SUSPENDED = 'suspended',
+      ~~~~~~~~~
+
+src/modules/users/entities/user.entity.ts:177:14 - error TS2300: Duplicate identifier 'User'.
+
+177 export class User {

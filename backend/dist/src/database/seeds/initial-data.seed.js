@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InitialDataSeed = void 0;
-const user_entity_1 = require("../modules/users/entities/user.entity");
-const school_entity_1 = require("../modules/schools/entities/school.entity");
-const resource_entity_1 = require("../modules/resources/entities/resource.entity");
-const gamification_points_entity_1 = require("../modules/gamification/entities/gamification-points.entity");
+const user_entity_1 = require("../../modules/users/entities/user.entity");
+const school_entity_1 = require("../../modules/schools/entities/school.entity");
+const resource_entity_1 = require("../../modules/resources/entities/resource.entity");
+const gamification_points_entity_1 = require("../../modules/gamification/entities/gamification-points.entity");
 class InitialDataSeed {
     async run(dataSource) {
         const userRepository = dataSource.getRepository(user_entity_1.User);
