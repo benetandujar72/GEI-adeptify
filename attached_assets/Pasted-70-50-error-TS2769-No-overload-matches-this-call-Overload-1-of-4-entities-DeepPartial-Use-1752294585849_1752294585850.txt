@@ -1,0 +1,313 @@
+70:50 - error TS2769: No overload matches this call.
+  Overload 1 of 4, '(entities: DeepPartial<User>[], options?: SaveOptions): Promise<(DeepPartial<User> & User)[]>', gave the following error.
+    Argument of type '{ email: string; firstName: string; lastName: string; role: UserRole; profilePicture: string; schoolId: number; }[]' is not assignable to parameter of type 'DeepPartial<User>[]'.
+      Type '{ email: string; firstName: string; lastName: string; role: UserRole; profilePicture: string; schoolId: number; }' is not assignable to type 'DeepPartial<User>'.
+        Type '{ email: string; firstName: string; lastName: string; role: UserRole; profilePicture: string; schoolId: number; }' is not assignable to type '{ id?: string; email?: string; firstName?: string; lastName?: string; password?: string; role?: DeepPartial<UserRole>; status?: DeepPartial<UserStatus>; ... 15 more ...; readonly isParent?: DeepPartial<...>; }'.
+          Types of property 'schoolId' are incompatible.
+            Type 'number' is not assignable to type 'string'.
+  Overload 2 of 4, '(entity: DeepPartial<User>, options?: SaveOptions): Promise<DeepPartial<User> & User>', gave the following error.
+    Argument of type '{ email: string; firstName: string; lastName: string; role: UserRole; profilePicture: string; schoolId: number; }[]' is not assignable to parameter of type 'DeepPartial<User>'.
+
+70     const savedUsers = await userRepository.save(users);
+                                                    ~~~~~
+
+
+src/database/seeds/initial-data.seed.ts:114:50 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<Resource>[]): Resource[]', gave the following error.
+    Argument of type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }' is not assignable to parameter of type 'DeepPartial<Resource>[]'.
+      Type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }' is missing the following properties from type 'DeepPartial<Resource>[]': length, pop, push, concat, and 29 more.
+  Overload 2 of 3, '(entityLike: DeepPartial<Resource>): Resource', gave the following error.
+    Argument of type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }' is not assignable to parameter of type 'DeepPartial<Resource>'.
+      Type '{ name: string; description: string; type: string; capacity: number; location: string; features: string[]; schoolId: number; }' is not assignable to type '{ id?: string; name?: string; description?: string; type?: DeepPartial<ResourceType>; status?: DeepPartial<ResourceStatus>; schoolId?: number; ... 20 more ...; readonly fullLocation?: string; }'.
+        Types of property 'type' are incompatible.
+          Type 'string' is not assignable to type 'DeepPartial<ResourceType>'.
+
+114       const resource = resourceRepository.create(resourceData);
+                                                     ~~~~~~~~~~~~
+
+
+src/database/seeds/initial-data.seed.ts:123:11 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<GamificationPoints>[]): GamificationPoints[]', gave the following error.
+    Object literal may only specify known properties, and 'userId' does not exist in type 'DeepPartial<GamificationPoints>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<GamificationPoints>): GamificationPoints', gave the following error.
+    Type 'string' is not assignable to type 'number'.
+
+123           userId: user.id,
+              ~~~~~~
+
+  src/modules/gamification/entities/gamification-points.entity.ts:18:3
+    18   userId: number;
+         ~~~~~~
+    The expected type comes from property 'userId' which is declared here on type 'DeepPartial<GamificationPoints>'
+
+src/modules/ai/ai.service.ts:46:18 - error TS2322: Type 'string' is not assignable to type 'number | FindOperator<number>'.
+
+46         where: { schoolId: user.schoolId }
+                    ~~~~~~~~
+
+src/modules/auth/auth.service.ts:62:7 - error TS2561: Object literal may only specify known properties, but 'lastLoginAt' does not exist in type '_QueryDeepPartialEntity<User>'. Did you mean to write 'lastLogin'?
+
+62       lastLoginAt: new Date(),
+         ~~~~~~~~~~~
+
+src/modules/auth/auth.service.ts:96:38 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'email' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'number' is not assignable to type 'string'.
+
+96     const user = this.userRepository.create({
+                                        ~~~~~~
+
+  src/modules/users/entities/user.entity.ts:78:3
+    78   schoolId: string;
+         ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'DeepPartial<User>'
+
+src/modules/auth/auth.service.ts:103:26 - error TS2339: Property 'PENDING' does not exist on type 'typeof UserStatus'.
+
+103       status: UserStatus.PENDING, // Requereix activació per admin
+                             ~~~~~~~
+
+src/modules/auth/auth.service.ts:115:22 - error TS2339: Property 'id' does not exist on type 'User[]'.
+
+115       sub: savedUser.id,
+                         ~~
+
+src/modules/auth/auth.service.ts:116:24 - error TS2339: Property 'email' does not exist on type 'User[]'.
+
+116       email: savedUser.email,
+                           ~~~~~
+
+src/modules/auth/auth.service.ts:117:23 - error TS2339: Property 'role' does not exist on type 'User[]'.
+
+117       role: savedUser.role,
+                          ~~~~
+
+src/modules/auth/auth.service.ts:118:27 - error TS2339: Property 'schoolId' does not exist on type 'User[]'.
+
+118       schoolId: savedUser.schoolId,
+                              ~~~~~~~~
+
+src/modules/auth/auth.service.ts:126:23 - error TS2339: Property 'id' does not exist on type 'User[]'.
+
+126         id: savedUser.id,
+                          ~~
+
+src/modules/auth/auth.service.ts:127:26 - error TS2339: Property 'email' does not exist on type 'User[]'.
+
+127         email: savedUser.email,
+                             ~~~~~
+
+src/modules/auth/auth.service.ts:128:30 - error TS2339: Property 'firstName' does not exist on type 'User[]'.
+
+128         firstName: savedUser.firstName,
+                                 ~~~~~~~~~
+
+src/modules/auth/auth.service.ts:129:29 - error TS2339: Property 'lastName' does not exist on type 'User[]'.
+
+129         lastName: savedUser.lastName,
+                                ~~~~~~~~
+
+src/modules/auth/auth.service.ts:130:25 - error TS2339: Property 'role' does not exist on type 'User[]'.
+
+130         role: savedUser.role,
+                            ~~~~
+
+src/modules/auth/auth.service.ts:131:27 - error TS2339: Property 'status' does not exist on type 'User[]'.
+
+131         status: savedUser.status,
+                              ~~~~~~
+
+src/modules/auth/auth.service.ts:132:29 - error TS2339: Property 'fullName' does not exist on type 'User[]'.
+
+132         fullName: savedUser.fullName,
+                                ~~~~~~~~
+
+src/modules/auth/auth.service.ts:148:34 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'email' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'number' is not assignable to type 'string'.
+
+148       user = this.userRepository.create({
+                                     ~~~~~~
+
+  src/modules/users/entities/user.entity.ts:78:3
+    78   schoolId: string;
+         ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'DeepPartial<User>'
+
+src/modules/auth/auth.service.ts:170:11 - error TS2561: Object literal may only specify known properties, but 'lastLoginAt' does not exist in type '_QueryDeepPartialEntity<User>'. Did you mean to write 'lastLogin'?
+
+170           lastLoginAt: new Date(),
+              ~~~~~~~~~~~
+
+src/modules/auth/auth.service.ts:179:7 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+179       schoolId: user.schoolId,
+          ~~~~~~~~
+
+  src/modules/auth/interfaces/jwt-payload.interface.ts:7:3
+    7   schoolId: number;
+        ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'JwtPayload'
+
+src/modules/auth/auth.service.ts:214:9 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+214         schoolId: user.schoolId,
+            ~~~~~~~~
+
+  src/modules/auth/interfaces/jwt-payload.interface.ts:7:3
+    7   schoolId: number;
+        ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'JwtPayload'
+
+src/modules/users/users.service.ts:28:16 - error TS2322: Type 'number' is not assignable to type 'string | FindOperator<string>'.
+
+28       where: { schoolId: parseInt(schoolId) },
+                  ~~~~~~~~
+
+src/modules/users/users.service.ts:36:9 - error TS2820: Type '"lastLoginAt"' is not assignable to type 'keyof User'. Did you mean '"lastLogin"'?
+
+36         'lastLoginAt',
+           ~~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:39:9 - error TS2322: Type '"classId"' is not assignable to type 'keyof User'.
+
+39         'classId',
+           ~~~~~~~~~
+
+src/modules/users/users.service.ts:40:9 - error TS2322: Type '"familyId"' is not assignable to type 'keyof User'.
+
+40         'familyId',
+           ~~~~~~~~~~
+
+src/modules/users/users.service.ts:81:7 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'schoolId' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Type 'number' is not assignable to type 'string'.
+
+81       schoolId: createUserDto.schoolId || 1,
+         ~~~~~~~~
+
+  src/modules/users/entities/user.entity.ts:78:3
+    78   schoolId: string;
+         ~~~~~~~~
+    The expected type comes from property 'schoolId' which is declared here on type 'DeepPartial<User>'
+
+src/modules/users/users.service.ts:82:26 - error TS2339: Property 'PENDING' does not exist on type 'typeof UserStatus'.
+
+82       status: UserStatus.PENDING,
+                            ~~~~~~~
+
+src/modules/users/users.service.ts:91:5 - error TS2740: Type 'User[]' is missing the following properties from type 'User': id, email, firstName, lastName, and 19 more.
+
+91     return this.userRepository.save(user);
+       ~~~~~~
+
+src/modules/users/users.service.ts:117:42 - error TS2345: Argument of type '{ email?: string; firstName?: string; lastName?: string; role?: UserRole; schoolId?: number; phone?: string; bio?: string; classId?: string; familyId?: string; academicInfo?: { grade?: string; subjects?: string[]; academicYear?: string; teacherId?: string; }; }' is not assignable to parameter of type '_QueryDeepPartialEntity<User>'.
+  Types of property 'schoolId' are incompatible.
+    Type 'number' is not assignable to type 'string | (() => string)'.
+
+117     await this.userRepository.update(id, updateData);
+                                             ~~~~~~~~~~
+
+src/modules/users/users.service.ts:171:38 - error TS2339: Property 'gamification' does not exist on type 'User'.
+
+171     const currentGamification = user.gamification || {
+                                         ~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:184:7 - error TS2353: Object literal may only specify known properties, and 'gamification' does not exist in type '_QueryDeepPartialEntity<User>'.
+
+184       gamification: updatedGamification,
+          ~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:192:32 - error TS2339: Property 'gamification' does not exist on type 'User'.
+
+192     const currentPoints = user.gamification?.points || 0;
+                                   ~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:210:32 - error TS2339: Property 'gamification' does not exist on type 'User'.
+
+210     const currentBadges = user.gamification?.badges || [];
+                                   ~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:227:38 - error TS2339: Property 'gamification' does not exist on type 'User'.
+
+227     const currentAchievements = user.gamification?.achievements || [];
+                                         ~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:244:22 - error TS2322: Type 'number' is not assignable to type 'string | FindOperator<string>'.
+
+244       where: { role, schoolId: parseInt(schoolId), status: UserStatus.ACTIVE },
+                         ~~~~~~~~
+
+src/modules/users/users.service.ts:255:16 - error TS2353: Object literal may only specify known properties, and 'classId' does not exist in type 'FindOptionsWhere<User> | FindOptionsWhere<User>[]'.
+
+255       where: { classId, status: UserStatus.ACTIVE },
+                   ~~~~~~~
+
+  ../node_modules/typeorm/find-options/FindOneOptions.d.ts:23:5
+    23     where?: FindOptionsWhere<Entity>[] | FindOptionsWhere<Entity>;
+           ~~~~~
+    The expected type comes from property 'where' which is declared here on type 'FindManyOptions<User>'
+
+src/modules/users/users.service.ts:266:16 - error TS2353: Object literal may only specify known properties, and 'familyId' does not exist in type 'FindOptionsWhere<User> | FindOptionsWhere<User>[]'.
+
+266       where: { familyId, status: UserStatus.ACTIVE },
+                   ~~~~~~~~
+
+  ../node_modules/typeorm/find-options/FindOneOptions.d.ts:23:5
+    23     where?: FindOptionsWhere<Entity>[] | FindOptionsWhere<Entity>;
+           ~~~~~
+    The expected type comes from property 'where' which is declared here on type 'FindManyOptions<User>'
+
+src/modules/users/users.service.ts:280:38 - error TS2339: Property 'FAMILY' does not exist on type 'typeof UserRole'.
+
+280       (currentUser.role === UserRole.FAMILY && targetUser.familyId === currentUser.familyId)
+                                         ~~~~~~
+
+src/modules/users/users.service.ts:280:59 - error TS2339: Property 'familyId' does not exist on type 'User'.
+
+280       (currentUser.role === UserRole.FAMILY && targetUser.familyId === currentUser.familyId)
+                                                              ~~~~~~~~
+
+src/modules/users/users.service.ts:280:84 - error TS2339: Property 'familyId' does not exist on type 'User'.
+
+280       (currentUser.role === UserRole.FAMILY && targetUser.familyId === currentUser.familyId)
+                                                                                       ~~~~~~~~
+
+src/modules/users/users.service.ts:285:39 - error TS2339: Property 'SUPER_ADMIN' does not exist on type 'typeof UserRole'.
+
+285     if (currentUser.role === UserRole.SUPER_ADMIN) return true;
+                                          ~~~~~~~~~~~
+
+src/modules/users/users.service.ts:286:73 - error TS2339: Property 'SUPER_ADMIN' does not exist on type 'typeof UserRole'.
+
+286     if (currentUser.role === UserRole.ADMIN && newUserRole !== UserRole.SUPER_ADMIN) return true;
+                                                                            ~~~~~~~~~~~
+
+src/modules/users/users.service.ts:299:39 - error TS2339: Property 'SUPER_ADMIN' does not exist on type 'typeof UserRole'.
+
+299     if (currentUser.role === UserRole.SUPER_ADMIN) return true;
+                                          ~~~~~~~~~~~
+
+src/modules/users/users.service.ts:300:69 - error TS2339: Property 'SUPER_ADMIN' does not exist on type 'typeof UserRole'.
+
+300     if (currentUser.role === UserRole.ADMIN && newRole !== UserRole.SUPER_ADMIN) return true;
+                                                                        ~~~~~~~~~~~
+
+src/modules/users/users.service.ts:328:19 - error TS2339: Property 'classId' does not exist on type 'User'.
+
+328       currentUser.classId === classId
+                      ~~~~~~~
+
+src/modules/users/users.service.ts:335:19 - error TS2339: Property 'familyId' does not exist on type 'User'.
+
+335       currentUser.familyId === familyId
+                      ~~~~~~~~
+
+[4:29:07 AM] Found 47 errors. Watching for file changes.
+

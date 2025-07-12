@@ -16,26 +16,16 @@ const passport_google_oauth20_1 = require("passport-google-oauth20");
 const config_1 = require("@nestjs/config");
 let GoogleStrategy = class GoogleStrategy extends (0, passport_1.PassportStrategy)(passport_google_oauth20_1.Strategy, 'google') {
     constructor(configService) {
-        this.configService = configService;
         const clientID = configService.get('GOOGLE_CLIENT_ID');
         const clientSecret = configService.get('GOOGLE_CLIENT_SECRET');
         const callbackURL = configService.get('GOOGLE_CALLBACK_URL');
-        if (clientID && clientSecret && clientID !== 'dummy-client-id-for-development') {
-            super({
-                clientID,
-                clientSecret,
-                callbackURL,
-                scope: ['email', 'profile'],
-            });
-        }
-        else {
-            super({
-                clientID: 'dummy-client-id',
-                clientSecret: 'dummy-client-secret',
-                callbackURL: 'http://localhost:3001/auth/google/callback',
-                scope: ['email', 'profile'],
-            });
-        }
+        super({
+            clientID: clientID && clientID !== 'dummy-client-id-for-development' ? clientID : 'dummy-client-id',
+            clientSecret: clientSecret && clientSecret !== 'dummy-client-secret-for-development' ? clientSecret : 'dummy-client-secret',
+            callbackURL: callbackURL || 'http://localhost:3001/auth/google/callback',
+            scope: ['email', 'profile'],
+        });
+        this.configService = configService;
     }
     async validate(accessToken, refreshToken, profile, done) {
         const { name, emails, photos } = profile;

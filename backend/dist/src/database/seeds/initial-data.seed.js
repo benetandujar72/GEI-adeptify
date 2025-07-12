@@ -33,7 +33,7 @@ class InitialDataSeed {
                 email: 'director@demo.gei.edu',
                 firstName: 'Maria',
                 lastName: 'González',
-                role: 'admin',
+                role: user_entity_1.UserRole.ADMIN,
                 profilePicture: 'https://via.placeholder.com/150/4A90E2/FFFFFF?text=MG',
                 schoolId: savedSchool.id
             },
@@ -41,7 +41,7 @@ class InitialDataSeed {
                 email: 'profesor@demo.gei.edu',
                 firstName: 'Joan',
                 lastName: 'Martínez',
-                role: 'teacher',
+                role: user_entity_1.UserRole.TEACHER,
                 profilePicture: 'https://via.placeholder.com/150/7ED321/FFFFFF?text=JM',
                 schoolId: savedSchool.id
             },
@@ -49,7 +49,7 @@ class InitialDataSeed {
                 email: 'parent@demo.gei.edu',
                 firstName: 'Anna',
                 lastName: 'Pérez',
-                role: 'parent',
+                role: user_entity_1.UserRole.PARENT,
                 profilePicture: 'https://via.placeholder.com/150/F5A623/FFFFFF?text=AP',
                 schoolId: savedSchool.id
             },
@@ -57,13 +57,14 @@ class InitialDataSeed {
                 email: 'student@demo.gei.edu',
                 firstName: 'Pau',
                 lastName: 'López',
-                role: 'student',
+                role: user_entity_1.UserRole.STUDENT,
                 profilePicture: 'https://via.placeholder.com/150/50E3C2/FFFFFF?text=PL',
                 schoolId: savedSchool.id
             }
         ];
         const savedUsers = await userRepository.save(users);
-        const resources = [
+        const resources = [];
+        const resourcesData = [
             {
                 name: 'Aula d\'Informàtica',
                 description: 'Aula equipada amb 30 ordinadors',
@@ -101,16 +102,24 @@ class InitialDataSeed {
                 schoolId: savedSchool.id
             }
         ];
-        const savedResources = await resourceRepository.save(resources);
-        const gamificationData = savedUsers.map(user => ({
-            userId: user.id,
-            points: user.role === 'student' ? Math.floor(Math.random() * 500) + 100 : 0,
-            level: user.role === 'student' ? Math.floor(Math.random() * 5) + 1 : 1,
-            xp: user.role === 'student' ? Math.floor(Math.random() * 1000) + 200 : 0,
-            badges: user.role === 'student' ? ['first_login', 'early_bird'] : [],
-            achievements: user.role === 'student' ? ['Primer dia', 'Estudiant actiu'] : []
-        }));
-        await gamificationRepository.save(gamificationData);
+        for (const resourceData of resourcesData) {
+            const resource = resourceRepository.create(resourceData);
+            resources.push(await resourceRepository.save(resource));
+        }
+        const savedResources = resources;
+        for (const user of savedUsers) {
+            if (user.role === user_entity_1.UserRole.STUDENT) {
+                const gamificationData = gamificationRepository.create({
+                    userId: user.id,
+                    points: Math.floor(Math.random() * 500) + 100,
+                    level: Math.floor(Math.random() * 5) + 1,
+                    xp: Math.floor(Math.random() * 1000) + 200,
+                    badges: ['first_login', 'early_bird'],
+                    achievements: ['Primer dia', 'Estudiant actiu']
+                });
+                await gamificationRepository.save(gamificationData);
+            }
+        }
         console.log('✅ Base de dades inicialitzada amb dades de demostració');
         console.log(`✅ Escola creada: ${savedSchool.name}`);
         console.log(`✅ ${savedUsers.length} usuaris creats`);

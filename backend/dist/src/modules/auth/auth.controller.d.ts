@@ -19,13 +19,13 @@ export declare class AuthController {
     register(registerDto: RegisterDto): Promise<{
         accessToken: string;
         user: {
-            id: string;
-            email: string;
-            firstName: string;
-            lastName: string;
-            role: import("../users/entities/user.entity").UserRole;
-            status: import("../users/entities/user.entity").UserStatus;
-            fullName: string;
+            id: any;
+            email: any;
+            firstName: any;
+            lastName: any;
+            role: any;
+            status: any;
+            fullName: any;
         };
         message: string;
     }>;
