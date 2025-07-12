@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
@@ -11,23 +10,13 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     const clientSecret = configService.get<string>('GOOGLE_CLIENT_SECRET');
     const callbackURL = configService.get<string>('GOOGLE_CALLBACK_URL');
 
-    // Solo inicializar si tenemos configuración válida
-    if (clientID && clientSecret && clientID !== 'dummy-client-id-for-development') {
-      super({
-        clientID,
-        clientSecret,
-        callbackURL,
-        scope: ['email', 'profile'],
-      });
-    } else {
-      // Configuración dummy para desarrollo
-      super({
-        clientID: 'dummy-client-id',
-        clientSecret: 'dummy-client-secret',
-        callbackURL: 'http://localhost:3001/auth/google/callback',
-        scope: ['email', 'profile'],
-      });
-    }
+    // Configurar estrategia con valores válidos o dummy para desarrollo
+    super({
+      clientID: clientID && clientID !== 'dummy-client-id-for-development' ? clientID : 'dummy-client-id',
+      clientSecret: clientSecret && clientSecret !== 'dummy-client-secret-for-development' ? clientSecret : 'dummy-client-secret',
+      callbackURL: callbackURL || 'http://localhost:3001/auth/google/callback',
+      scope: ['email', 'profile'],
+    });
   }
 
   async validate(

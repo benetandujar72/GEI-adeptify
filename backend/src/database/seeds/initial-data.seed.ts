@@ -1,6 +1,6 @@
 
 import { DataSource } from 'typeorm';
-import { User } from '../../modules/users/entities/user.entity';
+import { User, UserRole } from '../../modules/users/entities/user.entity';
 import { School } from '../../modules/schools/entities/school.entity';
 import { Resource } from '../../modules/resources/entities/resource.entity';
 import { GamificationPoints } from '../../modules/gamification/entities/gamification-points.entity';
@@ -37,7 +37,7 @@ export class InitialDataSeed {
         email: 'director@demo.gei.edu',
         firstName: 'Maria',
         lastName: 'González',
-        role: 'admin',
+        role: UserRole.ADMIN,
         profilePicture: 'https://via.placeholder.com/150/4A90E2/FFFFFF?text=MG',
         schoolId: savedSchool.id
       },
@@ -45,7 +45,7 @@ export class InitialDataSeed {
         email: 'profesor@demo.gei.edu',
         firstName: 'Joan',
         lastName: 'Martínez',
-        role: 'teacher',
+        role: UserRole.TEACHER,
         profilePicture: 'https://via.placeholder.com/150/7ED321/FFFFFF?text=JM',
         schoolId: savedSchool.id
       },
@@ -53,7 +53,7 @@ export class InitialDataSeed {
         email: 'parent@demo.gei.edu',
         firstName: 'Anna',
         lastName: 'Pérez',
-        role: 'parent',
+        role: UserRole.PARENT,
         profilePicture: 'https://via.placeholder.com/150/F5A623/FFFFFF?text=AP',
         schoolId: savedSchool.id
       },
@@ -61,7 +61,7 @@ export class InitialDataSeed {
         email: 'student@demo.gei.edu',
         firstName: 'Pau',
         lastName: 'López',
-        role: 'student',
+        role: UserRole.STUDENT,
         profilePicture: 'https://via.placeholder.com/150/50E3C2/FFFFFF?text=PL',
         schoolId: savedSchool.id
       }
@@ -69,8 +69,9 @@ export class InitialDataSeed {
 
     const savedUsers = await userRepository.save(users);
 
-    // Crear recursos de demostración
-    const resources = [
+    // Crear recursos de demostració usando el repository para evitar problemas de tipos
+    const resources = [];
+    const resourcesData = [
       {
         name: 'Aula d\'Informàtica',
         description: 'Aula equipada amb 30 ordinadors',
@@ -109,19 +110,26 @@ export class InitialDataSeed {
       }
     ];
 
-    const savedResources = await resourceRepository.save(resources);
+    for (const resourceData of resourcesData) {
+      const resource = resourceRepository.create(resourceData);
+      resources.push(await resourceRepository.save(resource));
+    }
+    const savedResources = resources;
 
     // Crear punts de gamificació per als usuaris
-    const gamificationData = savedUsers.map(user => ({
-      userId: user.id,
-      points: user.role === 'student' ? Math.floor(Math.random() * 500) + 100 : 0,
-      level: user.role === 'student' ? Math.floor(Math.random() * 5) + 1 : 1,
-      xp: user.role === 'student' ? Math.floor(Math.random() * 1000) + 200 : 0,
-      badges: user.role === 'student' ? ['first_login', 'early_bird'] : [],
-      achievements: user.role === 'student' ? ['Primer dia', 'Estudiant actiu'] : []
-    }));
-
-    await gamificationRepository.save(gamificationData);
+    for (const user of savedUsers) {
+      if (user.role === UserRole.STUDENT) {
+        const gamificationData = gamificationRepository.create({
+          userId: user.id,
+          points: Math.floor(Math.random() * 500) + 100,
+          level: Math.floor(Math.random() * 5) + 1,
+          xp: Math.floor(Math.random() * 1000) + 200,
+          badges: ['first_login', 'early_bird'],
+          achievements: ['Primer dia', 'Estudiant actiu']
+        });
+        await gamificationRepository.save(gamificationData);
+      }
+    }
 
     console.log('✅ Base de dades inicialitzada amb dades de demostració');
     console.log(`✅ Escola creada: ${savedSchool.name}`);
