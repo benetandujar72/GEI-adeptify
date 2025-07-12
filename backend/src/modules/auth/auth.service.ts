@@ -101,6 +101,7 @@ export class AuthService {
       role: role || UserRole.STUDENT,
       schoolId: schoolId ? schoolId.toString() : '1',
       status: UserStatus.PENDING, // Requereix activació per admin
+      isGoogleAuth: false,
     });
 
     // Set gamification separately to avoid type issues
@@ -174,7 +175,6 @@ export class AuthService {
         level: 1,
         badges: [],
         achievements: [],
-        xp: 0,
         weeklyPoints: 0,
         monthlyPoints: 0,
         streak: 0,
@@ -184,7 +184,12 @@ export class AuthService {
         favoriteSpaces: [],
         completedChallenges: [],
         notifications: true
-      };
+      };</user.gamification>
+
+      // Now add xp separately
+      if (user.gamification) {
+        user.gamification.xp = 0;
+      }
 
       user = await this.userRepository.save(user);
     } else {

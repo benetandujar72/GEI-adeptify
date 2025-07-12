@@ -88,7 +88,6 @@ export class UsersService {
       level: 1,
       badges: [],
       achievements: [],
-      xp: 0,
       weeklyPoints: 0,
       monthlyPoints: 0,
       streak: 0,
@@ -99,6 +98,11 @@ export class UsersService {
       completedChallenges: [],
       notifications: true
     };
+
+    // Now add xp separately
+    if (user.gamification) {
+      user.gamification.xp = 0;
+    }
 
     return await this.userRepository.save(user);
   }
