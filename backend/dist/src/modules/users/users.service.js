@@ -69,7 +69,7 @@ let UsersService = class UsersService {
         }
         const user = this.userRepository.create({
             ...createUserDto,
-            schoolId: createUserDto.schoolId || '1',
+            schoolId: createUserDto.schoolId ? createUserDto.schoolId.toString() : '1',
             status: user_entity_1.UserStatus.PENDING,
             gamification: {
                 points: 0,

@@ -84,7 +84,7 @@ let AuthService = class AuthService {
             firstName,
             lastName,
             role: role || user_entity_1.UserRole.STUDENT,
-            schoolId: schoolId || 1,
+            schoolId: schoolId ? schoolId.toString() : '1',
             status: user_entity_1.UserStatus.PENDING,
             gamification: {
                 points: 0,
@@ -129,7 +129,7 @@ let AuthService = class AuthService {
                 lastName: name.familyName,
                 role: user_entity_1.UserRole.STUDENT,
                 status: user_entity_1.UserStatus.ACTIVE,
-                schoolId: 1,
+                schoolId: '1',
                 gamification: {
                     points: 0,
                     level: 1,

@@ -108,7 +108,7 @@ describe('GamificationService', () => {
                 lastActivity: expect.any(Date)
             };
             gamificationPointsRepository.save.mockResolvedValue(updatedPoints);
-            const result = await service.addPoints(1, 100, 'test_reason');
+            const result = await service.addPoints('1', 100, 'test_reason');
             expect(result.points).toBe(600);
             expect(result.xp).toBe(1600);
             expect(result.level).toBe(3);
@@ -130,7 +130,7 @@ describe('GamificationService', () => {
                 lastActivity: expect.any(Date)
             };
             gamificationPointsRepository.save.mockResolvedValue(updatedPoints);
-            const result = await service.addPoints(1, 100, 'test_reason');
+            const result = await service.addPoints('1', 100, 'test_reason');
             expect(result.badges).toContain('level_3');
         });
     });
