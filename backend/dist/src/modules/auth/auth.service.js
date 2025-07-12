@@ -86,13 +86,23 @@ let AuthService = class AuthService {
             role: role || user_entity_1.UserRole.STUDENT,
             schoolId: schoolId ? schoolId.toString() : '1',
             status: user_entity_1.UserStatus.PENDING,
-            gamification: {
-                points: 0,
-                level: 1,
-                badges: [],
-                achievements: [],
-            },
         });
+        user.gamification = {
+            points: 0,
+            level: 1,
+            badges: [],
+            achievements: [],
+            xp: 0,
+            weeklyPoints: 0,
+            monthlyPoints: 0,
+            streak: 0,
+            lastActivity: new Date(),
+            totalReservations: 0,
+            totalStudyHours: 0,
+            favoriteSpaces: [],
+            completedChallenges: [],
+            notifications: true
+        };
         const savedUser = await this.userRepository.save(user);
         const payload = {
             sub: savedUser.id,

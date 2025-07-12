@@ -27,6 +27,7 @@ export declare class User {
     preferences: Record<string, any>;
     googleId: string;
     isEmailVerified: boolean;
+    isGoogleAuth: boolean;
     lastLogin: Date;
     lastLoginAt: Date;
     classId: string;
@@ -36,6 +37,16 @@ export declare class User {
         level?: number;
         badges?: string[];
         achievements?: string[];
+        xp?: number;
+        weeklyPoints?: number;
+        monthlyPoints?: number;
+        streak?: number;
+        lastActivity?: Date;
+        totalReservations?: number;
+        totalStudyHours?: number;
+        favoriteSpaces?: string[];
+        completedChallenges?: string[];
+        notifications?: boolean;
     };
     schoolId: string;
     school: School;

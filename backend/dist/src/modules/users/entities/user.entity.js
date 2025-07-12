@@ -104,6 +104,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "isEmailVerified", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], User.prototype, "isGoogleAuth", void 0);
+__decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Date)
 ], User.prototype, "lastLogin", void 0);
