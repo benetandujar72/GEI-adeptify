@@ -11,7 +11,7 @@ export declare enum NotificationType {
 }
 export declare class Notification {
     id: number;
-    userId: number;
+    userId: string;
     title: string;
     message: string;
     type: NotificationType;

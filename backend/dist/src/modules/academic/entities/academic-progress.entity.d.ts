@@ -11,7 +11,7 @@ export declare enum EvaluationType {
 }
 export declare class AcademicProgress {
     id: number;
-    studentId: number;
+    studentId: string;
     subject: string;
     evaluationType: EvaluationType;
     title: string;

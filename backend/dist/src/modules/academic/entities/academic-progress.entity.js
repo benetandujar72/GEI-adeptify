@@ -51,8 +51,8 @@ __decorate([
     __metadata("design:type", Number)
 ], AcademicProgress.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int' }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ type: 'varchar' }),
+    __metadata("design:type", String)
 ], AcademicProgress.prototype, "studentId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 100 }),

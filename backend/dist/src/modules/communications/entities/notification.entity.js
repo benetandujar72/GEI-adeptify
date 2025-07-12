@@ -31,8 +31,8 @@ __decorate([
     __metadata("design:type", Number)
 ], Notification.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int' }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ type: 'varchar' }),
+    __metadata("design:type", String)
 ], Notification.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),

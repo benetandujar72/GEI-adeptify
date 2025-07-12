@@ -11,7 +11,7 @@ describe('GamificationService', () => {
     let userRepository;
     const mockGamificationPoints = {
         id: 1,
-        userId: 1,
+        userId: '1',
         points: 500,
         level: 2,
         xp: 1500,
@@ -58,16 +58,16 @@ describe('GamificationService', () => {
     describe('getUserPoints', () => {
         it('should return existing user points', async () => {
             gamificationPointsRepository.findOne.mockResolvedValue(mockGamificationPoints);
-            const result = await service.getUserPoints(1);
+            const result = await service.getUserPoints('1');
             expect(result).toEqual(mockGamificationPoints);
             expect(gamificationPointsRepository.findOne).toHaveBeenCalledWith({
-                where: { userId: 1 }
+                where: { userId: '1' }
             });
         });
         it('should create new points record if user has none', async () => {
             gamificationPointsRepository.findOne.mockResolvedValue(null);
             gamificationPointsRepository.create.mockReturnValue({
-                userId: 1,
+                userId: '1',
                 points: 0,
                 level: 1,
                 xp: 0,
@@ -76,16 +76,16 @@ describe('GamificationService', () => {
             });
             gamificationPointsRepository.save.mockResolvedValue({
                 id: 1,
-                userId: 1,
+                userId: '1',
                 points: 0,
                 level: 1,
                 xp: 0,
                 badges: [],
                 achievements: []
             });
-            const result = await service.getUserPoints(1);
+            const result = await service.getUserPoints('1');
             expect(gamificationPointsRepository.create).toHaveBeenCalledWith({
-                userId: 1,
+                userId: '1',
                 points: 0,
                 level: 1,
                 xp: 0,
@@ -144,12 +144,12 @@ describe('GamificationService', () => {
                 badges: ['first_reservation', 'level_2', 'new_badge']
             };
             gamificationPointsRepository.save.mockResolvedValue(updatedPoints);
-            const result = await service.addBadge(1, 'new_badge');
+            const result = await service.addBadge('1', 'new_badge');
             expect(result.badges).toContain('new_badge');
             expect(gamificationPointsRepository.save).toHaveBeenCalled();
         });
         it('should not add duplicate badge', async () => {
-            const result = await service.addBadge(1, 'first_reservation');
+            const result = await service.addBadge('1', 'first_reservation');
             expect(result.badges).toEqual(mockGamificationPoints.badges);
             expect(gamificationPointsRepository.save).not.toHaveBeenCalled();
         });
@@ -164,12 +164,12 @@ describe('GamificationService', () => {
                 achievements: ['early_bird', 'new_achievement']
             };
             gamificationPointsRepository.save.mockResolvedValue(updatedPoints);
-            const result = await service.addAchievement(1, 'new_achievement');
+            const result = await service.addAchievement('1', 'new_achievement');
             expect(result.achievements).toContain('new_achievement');
             expect(gamificationPointsRepository.save).toHaveBeenCalled();
         });
         it('should not add duplicate achievement', async () => {
-            const result = await service.addAchievement(1, 'early_bird');
+            const result = await service.addAchievement('1', 'early_bird');
             expect(result.achievements).toEqual(mockGamificationPoints.achievements);
             expect(gamificationPointsRepository.save).not.toHaveBeenCalled();
         });
@@ -177,16 +177,16 @@ describe('GamificationService', () => {
     describe('getLeaderboard', () => {
         it('should return leaderboard for school', async () => {
             const mockLeaderboard = [
-                { id: 1, userId: 1, points: 1000, level: 3, xp: 3000, badges: [], achievements: [], lastActivity: new Date() },
-                { id: 2, userId: 2, points: 800, level: 2, xp: 2000, badges: [], achievements: [], lastActivity: new Date() },
-                { id: 3, userId: 3, points: 600, level: 1, xp: 1000, badges: [], achievements: [], lastActivity: new Date() }
+                { id: 1, userId: '1', points: 1000, level: 3, xp: 3000, badges: [], achievements: [], lastActivity: new Date() },
+                { id: 2, userId: '2', points: 800, level: 2, xp: 2000, badges: [], achievements: [], lastActivity: new Date() },
+                { id: 3, userId: '3', points: 600, level: 1, xp: 1000, badges: [], achievements: [], lastActivity: new Date() }
             ];
             service._mockQueryBuilder.getMany.mockResolvedValue(mockLeaderboard);
-            const result = await service.getLeaderboard(1, 10);
+            const result = await service.getLeaderboard('1', 10);
             expect(result).toEqual(mockLeaderboard);
             const queryBuilder = service._mockQueryBuilder;
             expect(queryBuilder.leftJoin).toHaveBeenCalledWith('gp.user', 'user');
-            expect(queryBuilder.where).toHaveBeenCalledWith('user.schoolId = :schoolId', { schoolId: 1 });
+            expect(queryBuilder.where).toHaveBeenCalledWith('user.schoolId = :schoolId', { schoolId: '1' });
             expect(queryBuilder.orderBy).toHaveBeenCalledWith('gp.points', 'DESC');
             expect(queryBuilder.limit).toHaveBeenCalledWith(10);
         });

@@ -13,8 +13,8 @@ export declare enum MessagePriority {
 }
 export declare class Message {
     id: number;
-    senderId: number;
-    receiverId: number;
+    senderId: string;
+    receiverId: string;
     subject: string;
     content: string;
     type: MessageType;
