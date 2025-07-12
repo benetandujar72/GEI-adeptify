@@ -76,8 +76,8 @@ __decorate([
     __metadata("design:type", String)
 ], Resource.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
+    __metadata("design:type", String)
 ], Resource.prototype, "schoolId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => school_entity_1.School, school => school.resources),

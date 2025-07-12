@@ -124,8 +124,8 @@ __decorate([
     __metadata("design:type", Object)
 ], User.prototype, "gamification", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
+    __metadata("design:type", String)
 ], User.prototype, "schoolId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => school_entity_1.School, school => school.users),

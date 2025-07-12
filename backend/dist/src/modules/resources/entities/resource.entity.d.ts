@@ -26,7 +26,7 @@ export declare class Resource {
     description?: string;
     type: ResourceType;
     status: ResourceStatus;
-    schoolId: number;
+    schoolId: string;
     school: School;
     building?: string;
     floor?: string;

@@ -37,7 +37,7 @@ export declare class User {
         badges?: string[];
         achievements?: string[];
     };
-    schoolId: number;
+    schoolId: string;
     school: School;
     gamificationPoints: GamificationPoints[];
     createdAt: Date;

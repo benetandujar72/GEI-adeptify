@@ -48,7 +48,7 @@ let AuthService = class AuthService {
             sub: user.id,
             email: user.email,
             role: user.role,
-            schoolId: user.schoolId,
+            schoolId: user.schoolId?.toString() || '1',
         };
         const accessToken = this.jwtService.sign(payload);
         const refreshToken = this.jwtService.sign(payload, { expiresIn: '30d' });
@@ -98,7 +98,7 @@ let AuthService = class AuthService {
             sub: savedUser.id,
             email: savedUser.email,
             role: savedUser.role,
-            schoolId: savedUser.schoolId,
+            schoolId: savedUser.schoolId?.toString() || '1',
         };
         const accessToken = this.jwtService.sign(payload);
         return {
@@ -151,7 +151,7 @@ let AuthService = class AuthService {
             sub: user.id,
             email: user.email,
             role: user.role,
-            schoolId: user.schoolId,
+            schoolId: user.schoolId?.toString() || '1',
         };
         const accessToken = this.jwtService.sign(payload);
         const refreshToken = this.jwtService.sign(payload, { expiresIn: '30d' });
@@ -181,7 +181,7 @@ let AuthService = class AuthService {
                 sub: user.id,
                 email: user.email,
                 role: user.role,
-                schoolId: user.schoolId,
+                schoolId: user.schoolId?.toString() || '1',
             };
             const newAccessToken = this.jwtService.sign(newPayload);
             const newRefreshToken = this.jwtService.sign(newPayload, { expiresIn: '30d' });

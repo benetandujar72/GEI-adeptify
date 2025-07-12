@@ -35,7 +35,7 @@ class InitialDataSeed {
                 lastName: 'González',
                 role: user_entity_1.UserRole.ADMIN,
                 profilePicture: 'https://via.placeholder.com/150/4A90E2/FFFFFF?text=MG',
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             },
             {
                 email: 'profesor@demo.gei.edu',
@@ -43,7 +43,7 @@ class InitialDataSeed {
                 lastName: 'Martínez',
                 role: user_entity_1.UserRole.TEACHER,
                 profilePicture: 'https://via.placeholder.com/150/7ED321/FFFFFF?text=JM',
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             },
             {
                 email: 'parent@demo.gei.edu',
@@ -51,7 +51,7 @@ class InitialDataSeed {
                 lastName: 'Pérez',
                 role: user_entity_1.UserRole.PARENT,
                 profilePicture: 'https://via.placeholder.com/150/F5A623/FFFFFF?text=AP',
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             },
             {
                 email: 'student@demo.gei.edu',
@@ -59,7 +59,7 @@ class InitialDataSeed {
                 lastName: 'López',
                 role: user_entity_1.UserRole.STUDENT,
                 profilePicture: 'https://via.placeholder.com/150/50E3C2/FFFFFF?text=PL',
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             }
         ];
         const savedUsers = await userRepository.save(users);
@@ -78,7 +78,7 @@ class InitialDataSeed {
                     whiteboard: true,
                     internet: true
                 },
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             },
             {
                 name: 'Laboratori de Ciències',
@@ -92,24 +92,24 @@ class InitialDataSeed {
                     internet: true,
                     airConditioning: true
                 },
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             },
             {
                 name: 'Gimnàs Principal',
                 description: 'Espai poliesportiu principal',
-                type: resource_entity_1.ResourceType.SPORTS,
+                type: resource_entity_1.ResourceType.GYMNASIUM,
                 capacity: 50,
                 building: 'Planta Baixa',
                 features: {
                     audioSystem: true,
                     accessibility: true
                 },
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             },
             {
                 name: 'Biblioteca',
                 description: 'Biblioteca amb zona d\'estudi silenciós',
-                type: resource_entity_1.ResourceType.STUDY,
+                type: resource_entity_1.ResourceType.LIBRARY,
                 capacity: 40,
                 building: 'Planta 1',
                 roomNumber: 'Centre',
@@ -119,7 +119,7 @@ class InitialDataSeed {
                     projector: false,
                     whiteboard: false
                 },
-                schoolId: parseInt(savedSchool.id)
+                schoolId: savedSchool.id
             }
         ];
         for (const resourceData of resourcesData) {
@@ -130,7 +130,7 @@ class InitialDataSeed {
         for (const user of savedUsers) {
             if (user.role === user_entity_1.UserRole.STUDENT) {
                 const gamificationData = gamificationRepository.create({
-                    userId: user.id,
+                    userId: parseInt(user.id),
                     points: Math.floor(Math.random() * 500) + 100,
                     level: Math.floor(Math.random() * 5) + 1,
                     xp: Math.floor(Math.random() * 1000) + 200,
