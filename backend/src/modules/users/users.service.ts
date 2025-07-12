@@ -78,7 +78,7 @@ export class UsersService {
 
     const user = this.userRepository.create({
       ...createUserDto,
-      schoolId: createUserDto.schoolId || '1',
+      schoolId: createUserDto.schoolId ? createUserDto.schoolId.toString() : '1',
       status: UserStatus.PENDING,
       gamification: {
         points: 0,
@@ -109,7 +109,7 @@ export class UsersService {
     }
 
     // Asegurar que schoolId es string
-    const updateData = { ...updateUserDto };
+    const updateData: any = { ...updateUserDto };
     if (updateData.schoolId && typeof updateData.schoolId === 'number') {
       updateData.schoolId = updateData.schoolId.toString();
     }

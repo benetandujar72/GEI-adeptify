@@ -99,7 +99,7 @@ export class AuthService {
       firstName,
       lastName,
       role: role || UserRole.STUDENT,
-      schoolId: schoolId || 1,
+      schoolId: schoolId ? schoolId.toString() : '1',
       status: UserStatus.PENDING, // Requereix activació per admin
       gamification: {
         points: 0,
@@ -152,7 +152,7 @@ export class AuthService {
         lastName: name.familyName,
         role: UserRole.STUDENT, // Rol per defecte
         status: UserStatus.ACTIVE,
-        schoolId: 1, // ID per defecte
+        schoolId: '1', // ID per defecte
         gamification: {
           points: 0,
           level: 1,
