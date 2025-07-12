@@ -13,7 +13,7 @@ export const databaseConfig = (configService: ConfigService): TypeOrmModuleOptio
   migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
   synchronize: configService.get<string>('NODE_ENV') === 'development',
   logging: configService.get<string>('NODE_ENV') === 'development',
-  ssl: configService.get<string>('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+  ssl: configService.get<boolean>('DATABASE_SSL') ? { rejectUnauthorized: false } : false,
   autoLoadEntities: true,
   keepConnectionAlive: true,
 });
@@ -29,5 +29,5 @@ export const dataSourceConfig = (configService: ConfigService): DataSourceOption
   migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
   synchronize: configService.get<string>('NODE_ENV') === 'development',
   logging: configService.get<string>('NODE_ENV') === 'development',
-  ssl: configService.get<string>('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+  ssl: configService.get<boolean>('DATABASE_SSL') ? { rejectUnauthorized: false } : false,
 });
