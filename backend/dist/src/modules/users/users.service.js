@@ -76,9 +76,19 @@ let UsersService = class UsersService {
                 level: 1,
                 badges: [],
                 achievements: [],
-            },
+                xp: 0,
+                weeklyPoints: 0,
+                monthlyPoints: 0,
+                streak: 0,
+                lastActivity: new Date(),
+                totalReservations: 0,
+                totalStudyHours: 0,
+                favoriteSpaces: [],
+                completedChallenges: [],
+                notifications: true
+            }
         });
-        return this.userRepository.save(user);
+        return await this.userRepository.save(user);
     }
     async update(id, updateUserDto, currentUser) {
         const user = await this.findOne(id, currentUser);

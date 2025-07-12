@@ -1,0 +1,62 @@
+src/modules/academic/academic.controller.ts:24:54 - error TS2345: Argument of type '{ studentId: number; subject: string; evaluationType: EvaluationType; title: string; description?: string; score?: number; maxScore?: number; feedback?: string; date: Date; metadata?: any; }' is not assignable to parameter of type '{ studentId: string; subject: string; evaluationType: EvaluationType; title: string; description?: string; score?: number; maxScore?: number; feedback?: string; date: Date; metadata?: any; }'.
+  Types of property 'studentId' are incompatible.
+    Type 'number' is not assignable to type 'string'.
+
+24     return await this.academicService.createProgress(body);
+                                                        ~~~~
+
+src/modules/academic/academic.controller.ts:29:58 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+29     return await this.academicService.getStudentProgress(+studentId, body.subject);
+                                                            ~~~~~~~~~~
+
+src/modules/academic/academic.controller.ts:34:57 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+34     return await this.academicService.getStudentAverage(+studentId, body.subject);
+                                                           ~~~~~~~~~~
+
+src/modules/academic/academic.controller.ts:39:58 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+39     return await this.academicService.getSubjectProgress(+studentId, subject);
+                                                            ~~~~~~~~~~
+
+src/modules/auth/auth.service.ts:148:34 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'email' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Object literal may only specify known properties, and 'xp' does not exist in type 'DeepPartial<{ points?: number; level?: number; badges?: string[]; achievements?: string[]; }>'.
+
+148       user = this.userRepository.create({
+                                     ~~~~~~
+
+  src/modules/users/entities/user.entity.ts:89:3
+    89   gamification: {
+         ~~~~~~~~~~~~
+    The expected type comes from property 'gamification' which is declared here on type 'DeepPartial<User>'
+
+src/modules/communications/communications.controller.ts:20:7 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+20       body.receiverId,
+         ~~~~~~~~~~~~~~~
+
+src/modules/users/users.service.ts:79:38 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<User>[]): User[]', gave the following error.
+    Object literal may only specify known properties, and 'schoolId' does not exist in type 'DeepPartial<User>[]'.
+  Overload 2 of 3, '(entityLike: DeepPartial<User>): User', gave the following error.
+    Object literal may only specify known properties, and 'xp' does not exist in type 'DeepPartial<{ points?: number; level?: number; badges?: string[]; achievements?: string[]; }>'.
+
+79     const user = this.userRepository.create({
+                                        ~~~~~~
+
+  src/modules/users/entities/user.entity.ts:89:3
+    89   gamification: {
+         ~~~~~~~~~~~~
+    The expected type comes from property 'gamification' which is declared here on type 'DeepPartial<User>'
+
+src/modules/users/users.service.ts:101:5 - error TS2740: Type 'User[]' is missing the following properties from type 'User': id, email, firstName, lastName, and 23 more.
+
+101     return await this.userRepository.save(user);
+        ~~~~~~
+
+[4:44:37 AM] Found 8 errors. Watching for file changes.
+

@@ -253,7 +253,7 @@ let AiService = AiService_1 = class AiService {
         }
         try {
             const academicProgress = await this.academicProgressRepository.find({
-                where: { studentId: parseInt(user.id) },
+                where: { studentId: user.id },
                 order: { date: 'DESC' },
                 take: 10
             });

@@ -8,7 +8,7 @@ export declare class AcademicService {
     private aiService;
     constructor(academicProgressRepository: Repository<AcademicProgress>, userRepository: Repository<User>, aiService: AiService);
     createProgress(progressData: {
-        studentId: number;
+        studentId: string;
         subject: string;
         evaluationType: EvaluationType;
         title: string;
@@ -19,9 +19,9 @@ export declare class AcademicService {
         date: Date;
         metadata?: any;
     }): Promise<AcademicProgress>;
-    getStudentProgress(studentId: number, subject?: string): Promise<AcademicProgress[]>;
-    getStudentAverage(studentId: number, subject?: string): Promise<number>;
-    getSubjectProgress(studentId: number, subject: string): Promise<{
+    getStudentProgress(studentId: string, subject?: string): Promise<AcademicProgress[]>;
+    getStudentAverage(studentId: string, subject?: string): Promise<number>;
+    getSubjectProgress(studentId: string, subject: string): Promise<{
         average: number;
         trend: 'improving' | 'declining' | 'stable';
         recentScores: number[];

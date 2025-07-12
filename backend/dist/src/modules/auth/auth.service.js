@@ -123,8 +123,7 @@ let AuthService = class AuthService {
         });
         if (!user) {
             user = this.userRepository.create({
-                email,
-                googleId: id,
+                email: profile.emails[0].value,
                 firstName: name.givenName,
                 lastName: name.familyName,
                 role: user_entity_1.UserRole.STUDENT,
@@ -135,7 +134,17 @@ let AuthService = class AuthService {
                     level: 1,
                     badges: [],
                     achievements: [],
-                },
+                    xp: 0,
+                    weeklyPoints: 0,
+                    monthlyPoints: 0,
+                    streak: 0,
+                    lastActivity: new Date(),
+                    totalReservations: 0,
+                    totalStudyHours: 0,
+                    favoriteSpaces: [],
+                    completedChallenges: [],
+                    notifications: true
+                }
             });
             user = await this.userRepository.save(user);
         }
