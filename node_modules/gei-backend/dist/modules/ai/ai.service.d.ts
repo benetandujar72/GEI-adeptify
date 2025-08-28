@@ -1,0 +1,32 @@
+import { Repository } from 'typeorm';
+import { User } from '../users/entities/user.entity';
+import { Resource } from '../resources/entities/resource.entity';
+import { Reservation } from '../reservations/entities/reservation.entity';
+import { AcademicProgress } from '../academic/entities/academic-progress.entity';
+import { Message } from '../communications/entities/message.entity';
+import { Notification } from '../communications/entities/notification.entity';
+import { GamificationPoints } from '../gamification/entities/gamification-points.entity';
+export declare class AiService {
+    private userRepository;
+    private resourceRepository;
+    private reservationRepository;
+    private academicProgressRepository;
+    private messageRepository;
+    private notificationRepository;
+    private gamificationPointsRepository;
+    private readonly logger;
+    private genAI;
+    constructor(userRepository: Repository<User>, resourceRepository: Repository<Resource>, reservationRepository: Repository<Reservation>, academicProgressRepository: Repository<AcademicProgress>, messageRepository: Repository<Message>, notificationRepository: Repository<Notification>, gamificationPointsRepository: Repository<GamificationPoints>);
+    processNaturalLanguageRequest(message: string, userId: string): Promise<string>;
+    private analyzeIntent;
+    private handleAvailabilityQuery;
+    private handleReservationRequest;
+    private handleQueryRequest;
+    private handleGreeting;
+    private handleAcademicRequest;
+    private handleHelpRequest;
+    private handleGenericRequest;
+    translateMessage(message: string, targetLanguage: string): Promise<string>;
+    private parseTimeExpression;
+    private formatDateTime;
+}
