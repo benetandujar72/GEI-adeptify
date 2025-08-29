@@ -2,9 +2,24 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { user, isLoading } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Evitar hidratación incorrecta
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl">Cargando...</div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (

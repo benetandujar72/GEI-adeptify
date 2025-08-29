@@ -8,14 +8,23 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Verificar si hay un usuario guardado en localStorage
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+    try {
+      if (typeof window !== 'undefined') {
+        const savedUser = localStorage.getItem('user');
+        if (savedUser) {
+          setUser(JSON.parse(savedUser));
+        }
+      }
+    } catch (error) {
+      console.error('Error loading user from localStorage:', error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, []);
 
   const login = async (data: LoginData) => {
@@ -31,7 +40,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       };
       
       setUser(mockUser);
-      localStorage.setItem('user', JSON.stringify(mockUser));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('user', JSON.stringify(mockUser));
+      }
     } catch (error) {
       console.error('Error en login:', error);
       throw error;
@@ -51,7 +62,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       };
       
       setUser(mockUser);
-      localStorage.setItem('user', JSON.stringify(mockUser));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('user', JSON.stringify(mockUser));
+      }
     } catch (error) {
       console.error('Error en registro:', error);
       throw error;
@@ -60,8 +73,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('user');
+    }
   };
+
+  // Evitar errores de hidratación
+  if (!mounted) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
