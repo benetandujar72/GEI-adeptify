@@ -38,10 +38,10 @@ export default function RealDashboard() {
         const student = profileRes.data;
         
         // Combinar todos los datos
-        student.subjects = subjectsRes.success ? subjectsRes.data || [] : [];
-        student.achievements = achievementsRes.success ? achievementsRes.data || [] : [];
-        student.recentActivities = activitiesRes.success ? activitiesRes.data || [] : [];
-        student.notifications = notificationsRes.success ? notificationsRes.data || [];
+        student.subjects = subjectsRes.success ? (subjectsRes.data || []) : [];
+        student.achievements = achievementsRes.success ? (achievementsRes.data || []) : [];
+        student.recentActivities = activitiesRes.success ? (activitiesRes.data || []) : [];
+        student.notifications = notificationsRes.success ? (notificationsRes.data || []) : [];
 
         // Asignar tareas a las materias correspondientes
         if (assignmentsRes.success && assignmentsRes.data) {
