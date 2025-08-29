@@ -1,7 +1,16 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User, LoginData, RegisterData, AuthContextType } from '@/types/auth';
+import { apiService, User, LoginRequest, RegisterRequest } from '@/services/api';
+
+interface AuthContextType {
+  user: User | null;
+  login: (data: LoginRequest) => Promise<void>;
+  register: (data: RegisterRequest) => Promise<void>;
+  logout: () => void;
+  isLoading: boolean;
+  isAuthenticated: boolean;
+}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -12,36 +21,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Verificar si hay un usuario guardado en localStorage
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = async () => {
     try {
-      if (typeof window !== 'undefined') {
-        const savedUser = localStorage.getItem('user');
-        if (savedUser) {
-          setUser(JSON.parse(savedUser));
+      if (typeof window !== 'undefined' && apiService.isAuthenticated()) {
+        const response = await apiService.getCurrentUser();
+        if (response.success && response.data) {
+          setUser(response.data);
+        } else {
+          // Token inválido, limpiar
+          apiService.removeToken();
         }
       }
     } catch (error) {
-      console.error('Error loading user from localStorage:', error);
+      console.error('Error checking auth status:', error);
+      apiService.removeToken();
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  };
 
-  const login = async (data: LoginData) => {
+  const login = async (data: LoginRequest) => {
     try {
-      // Simular llamada a API
-      const mockUser: User = {
-        id: '1',
-        email: data.email,
-        name: 'Usuario Demo',
-        role: 'student',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
+      const response = await apiService.login(data);
       
-      setUser(mockUser);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('user', JSON.stringify(mockUser));
+      if (response.success && response.data) {
+        const { user, token } = response.data;
+        setUser(user);
+        apiService.setToken(token);
+        
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+      } else {
+        throw new Error(response.error || 'Error en el login');
       }
     } catch (error) {
       console.error('Error en login:', error);
@@ -49,21 +64,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const register = async (data: RegisterData) => {
+  const register = async (data: RegisterRequest) => {
     try {
-      // Simular llamada a API
-      const mockUser: User = {
-        id: '1',
-        email: data.email,
-        name: data.name,
-        role: data.role,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
+      const response = await apiService.register(data);
       
-      setUser(mockUser);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('user', JSON.stringify(mockUser));
+      if (response.success && response.data) {
+        const { user, token } = response.data;
+        setUser(user);
+        apiService.setToken(token);
+        
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+      } else {
+        throw new Error(response.error || 'Error en el registro');
       }
     } catch (error) {
       console.error('Error en registro:', error);
@@ -73,6 +87,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = () => {
     setUser(null);
+    apiService.removeToken();
+    
     if (typeof window !== 'undefined') {
       localStorage.removeItem('user');
     }
@@ -84,7 +100,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      login, 
+      register, 
+      logout, 
+      isLoading,
+      isAuthenticated: !!user 
+    }}>
       {children}
     </AuthContext.Provider>
   );

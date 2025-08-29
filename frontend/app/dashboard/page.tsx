@@ -1,5 +1,5 @@
-import ModernDashboard from '@/components/dashboard/ModernDashboard';
+import RealDashboard from '@/components/dashboard/RealDashboard';
 
 export default function DashboardPage() {
-  return <ModernDashboard />;
+  return <RealDashboard />;
 }
