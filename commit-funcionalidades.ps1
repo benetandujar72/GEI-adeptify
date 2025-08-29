@@ -9,6 +9,7 @@ git add frontend/src/components/dashboard/Dashboard.tsx
 git add frontend/app/layout.tsx
 git add frontend/app/page.tsx
 git add frontend/app/login/page.tsx
+git add frontend/app/register/page.tsx
 git add frontend/app/dashboard/page.tsx
 git add frontend/app/dashboard/ai/page.tsx
 git add commit-funcionalidades.ps1
@@ -25,6 +26,7 @@ git commit -m "feat: Agregar funcionalidades completas del frontend
 - Dashboard principal con navegación a módulos
 - Asistente IA con chat interactivo
 - Página de login funcional
+- Página de registro funcional
 - Navegación entre páginas
 - Diseño responsive con Tailwind CSS
 - Interfaz moderna y profesional"
